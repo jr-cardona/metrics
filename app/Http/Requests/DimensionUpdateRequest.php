@@ -25,7 +25,6 @@ class DimensionUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'softdeletes' => ['required'],
         ];
     }
 }

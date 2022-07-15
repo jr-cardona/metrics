@@ -27,7 +27,6 @@ class UserUpdateRequest extends FormRequest
             'username' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'password'],
-            'softdeletes' => ['required'],
         ];
     }
 }

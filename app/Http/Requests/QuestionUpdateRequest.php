@@ -29,7 +29,6 @@ class QuestionUpdateRequest extends FormRequest
             'type' => ['required', 'in:text,textarea,checkbox,check,date,datetime,select,integer,radiobutton,phone,email,url'],
             'number' => ['required', 'integer', 'gt:0'],
             'dimension_id' => ['integer', 'exists:dimensions,id'],
-            'softdeletes' => ['required'],
         ];
     }
 }
