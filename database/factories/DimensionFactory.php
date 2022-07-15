@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\User;
+use App\Models\Dimension;
 
-class UserFactory extends Factory
+class DimensionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Dimension::class;
 
     /**
      * Define the model's default state.
@@ -23,9 +23,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => $this->faker->userName,
-            'email' => $this->faker->safeEmail,
-            'password' => $this->faker->password,
+            'name' => $this->faker->name,
         ];
     }
 }

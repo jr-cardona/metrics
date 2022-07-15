@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('question', App\Http\Controllers\QuestionController::class);
+
+Route::resource('user', App\Http\Controllers\UserController::class);
+
+Route::resource('dimension', App\Http\Controllers\DimensionController::class);
