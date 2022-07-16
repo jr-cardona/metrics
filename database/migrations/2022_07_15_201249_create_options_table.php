@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOptionsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,6 @@ class CreateOptionsTable extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('options', function (Blueprint $table) {
             $table->id();
             $table->foreignId('question_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
@@ -22,8 +20,6 @@ class CreateOptionsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -35,4 +31,4 @@ class CreateOptionsTable extends Migration
     {
         Schema::dropIfExists('options');
     }
-}
+};

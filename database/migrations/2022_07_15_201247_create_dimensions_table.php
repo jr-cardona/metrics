@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDimensionsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateDimensionsTable extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('dimensions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->softDeletes();
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -34,4 +30,4 @@ class CreateDimensionsTable extends Migration
     {
         Schema::dropIfExists('dimensions');
     }
-}
+};
