@@ -14,6 +14,9 @@ class DimensionSeeder extends Seeder
      */
     public function run(): void
     {
-        Dimension::factory()->count(5)->create();
+        Dimension::create(['name' => 'Agresión física']);
+        Dimension::create(['name' => 'Agresión verbal']);
+        Dimension::create(['name' => 'Ira']);
+        Dimension::create(['name' => 'Hostilidad']);
     }
 }

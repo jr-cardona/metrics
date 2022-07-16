@@ -83,7 +83,7 @@ class DimensionControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('dimensions.show');
-        $response->assertViewHas('dimension');
+        $response->assertViewHas('dimensions');
     }
 
 
@@ -98,7 +98,7 @@ class DimensionControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('dimensions.edit');
-        $response->assertViewHas('dimension');
+        $response->assertViewHas('dimensions');
     }
 
 
