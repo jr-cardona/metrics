@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('is_active');
             $table->enum('type', ["text","textarea","checkbox","check","date","datetime","select","integer","radiobutton","phone","email","url"]);
             $table->unsignedSmallInteger('number');
-            $table->foreignId('dimension_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('dimension_id')->nullable()->constrained()->nullOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
