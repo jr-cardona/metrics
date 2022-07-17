@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between">
             <label>
-                <x-jet-input wire:model="search" type="search" placeholder="Buscar..." />
+                <x-jet-input wire:model="search" type="search" placeholder="{{ __('Search') }}..." />
             </label>
             <a href="{{ route('dimensions.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition">
                 <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
@@ -53,8 +53,8 @@
                                         <div class="text-sm text-gray-600">{{ $dimension->created_at->diffForHumans() }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <div class="flex justify-between items-center">
-                                            <a href="{{ route('dimensions.edit', $dimension) }}" class="text-indigo-500 hover:text-indigo-900">
+                                        <div class="flex justify-end items-center">
+                                            <a href="{{ route('dimensions.edit', $dimension) }}" class="text-indigo-500 hover:text-indigo-900 px-3">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                                             </a>
                                             <livewire:components.delete-modal wire:key="{{'dimension-delete-button-'.$dimension->id}}" :model="$dimension">
