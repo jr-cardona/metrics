@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Components;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -9,7 +10,7 @@ class DeleteModal extends Component
 {
     protected $listeners = ['confirmDeletion'];
 
-    public $model;
+    public Model $model;
 
     public bool $showDeleteModal = false;
 
@@ -20,7 +21,7 @@ class DeleteModal extends Component
 
     public function confirmDeletion($model)
     {
-        if ($this->model->id === $model['id']) {
+        if ($this->model->getKey() === $model['id']) {
             $this->showDeleteModal = true;
         }
     }
@@ -30,7 +31,7 @@ class DeleteModal extends Component
         $this->model->delete();
 
         session()->flash('flash.bannerStyle', 'danger');
-        session()->flash('flash.banner', __(' deleted.'));
+        session()->flash('flash.banner', __('Record deleted.'));
 
         $this->redirect(url()->previous());
     }

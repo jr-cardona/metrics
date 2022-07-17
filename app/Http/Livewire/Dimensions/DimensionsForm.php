@@ -21,7 +21,7 @@ class DimensionsForm extends Component
     protected function rules(): array
     {
         return [
-            'dimension.name' => ['required', 'string'],
+            'dimension.name' => ['required', 'string', 'max:255'],
         ];
     }
 
