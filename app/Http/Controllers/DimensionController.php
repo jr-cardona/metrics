@@ -13,20 +13,9 @@ class DimensionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $dimensions = Dimension::all();
-
-        return view('dimension.index', compact('dimensions'));
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
-        return view('dimension.create');
+        return view('dimensions.create');
     }
 
     /**
@@ -37,9 +26,9 @@ class DimensionController extends Controller
     {
         $dimension = Dimension::create($request->validated());
 
-        $request->session()->flash('dimension.id', $dimension->id);
+        $request->session()->flash('dimensions.id', $dimension->id);
 
-        return redirect()->route('dimension.index');
+        return redirect()->route('dimensions.index');
     }
 
     /**
@@ -49,7 +38,7 @@ class DimensionController extends Controller
      */
     public function show(Request $request, Dimension $dimension)
     {
-        return view('dimension.show', compact('dimension'));
+        return view('dimensions.show', compact('dimension'));
     }
 
     /**
@@ -59,7 +48,7 @@ class DimensionController extends Controller
      */
     public function edit(Request $request, Dimension $dimension)
     {
-        return view('dimension.edit', compact('dimension'));
+        return view('dimensions.edit', compact('dimension'));
     }
 
     /**
@@ -71,9 +60,9 @@ class DimensionController extends Controller
     {
         $dimension->update($request->validated());
 
-        $request->session()->flash('dimension.id', $dimension->id);
+        $request->session()->flash('dimensions.id', $dimension->id);
 
-        return redirect()->route('dimension.index');
+        return redirect()->route('dimensions.index');
     }
 
     /**
@@ -85,6 +74,6 @@ class DimensionController extends Controller
     {
         $dimension->delete();
 
-        return redirect()->route('dimension.index');
+        return redirect()->route('dimensions.index');
     }
 }

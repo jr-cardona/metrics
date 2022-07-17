@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\Dimensions\DimensionsForm;
+use App\Http\Livewire\Dimensions\DimensionsIndex;
+use App\Http\Livewire\Dimensions\DimensionsShow;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +29,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('dimensions', DimensionsIndex::class)->name('dimensions.index');
+    Route::get('/dimensions/create', DimensionsForm::class)->name('dimensions.create');
+    Route::get('/dimensions/{dimension:id}/edit', DimensionsForm::class)->name('dimensions.edit');
+    Route::get('/dimensions/{dimension:id}/show', DimensionsShow::class)->name('dimensions.show');
+
     Route::resource('questions', App\Http\Controllers\QuestionController::class);
 
     Route::resource('users', App\Http\Controllers\UserController::class);
-
-    Route::resource('dimensions', App\Http\Controllers\DimensionController::class);
 });
