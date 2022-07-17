@@ -23,7 +23,7 @@ class DimensionsIndex extends Component
             'dimensions' => Dimension::query()
                 ->where('name', 'like', "%$this->search%")
                 ->orderBy($this->sortField, $this->sortDesc ? 'desc' : 'asc')
-                ->paginate(5)
+                ->paginate(10)
         ]);
     }
 

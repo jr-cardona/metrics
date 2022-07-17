@@ -4,15 +4,12 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Laravel\Fortify\Features;
-use Tests\TestCase;
+use Tests\DBTestCase;
 
-class PasswordResetTest extends TestCase
+class PasswordResetTest extends DBTestCase
 {
-    use RefreshDatabase;
-
     public function test_reset_password_link_screen_can_be_rendered()
     {
         if (! Features::enabled(Features::resetPasswords())) {
