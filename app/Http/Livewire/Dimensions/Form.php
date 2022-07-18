@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class DimensionsForm extends Component
+class Form extends Component
 {
     use WithFileUploads;
 

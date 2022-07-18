@@ -6,7 +6,7 @@ use App\Models\Dimension;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class DimensionsShow extends Component
+class Show extends Component
 {
     public Dimension $dimension;
 

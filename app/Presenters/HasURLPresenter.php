@@ -2,7 +2,7 @@
 
 namespace App\Presenters;
 
-trait URLTrait
+trait HasURLPresenter
 {
     public function url(): URL
     {

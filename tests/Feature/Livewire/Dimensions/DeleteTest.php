@@ -2,13 +2,14 @@
 
 namespace Tests\Feature\Livewire\Dimensions;
 
+use App\Http\Livewire\Components\DeleteModal;
 use App\Models\Dimension;
 use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
 
-class DimensionDeleteTest extends TestCase
+class DeleteTest extends TestCase
 {
     use LazilyRefreshDatabase;
 
@@ -19,7 +20,7 @@ class DimensionDeleteTest extends TestCase
 
         $user = User::factory()->create();
 
-        Livewire::actingAs($user)->test('components.delete-modal', ['model' => $dimension])
+        Livewire::actingAs($user)->test(DeleteModal::getName(), ['model' => $dimension])
             ->call('delete')
             ->assertSessionHas('flash.bannerStyle', 'danger')
             ->assertSessionHas('flash.banner')

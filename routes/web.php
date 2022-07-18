@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Livewire\Dimensions\DimensionsForm;
-use App\Http\Livewire\Dimensions\DimensionsIndex;
-use App\Http\Livewire\Dimensions\DimensionsShow;
+use App\Http\Livewire\Dimensions\Form as DForm;
+use App\Http\Livewire\Dimensions\Index as DIndex;
+use App\Http\Livewire\Dimensions\Show as DShow;
+use App\Http\Livewire\Questions\Form as QForm;
+use App\Http\Livewire\Questions\Index as QIndex;
+use App\Http\Livewire\Questions\Show as QShow;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/login');
 
 Route::middleware([
     'auth:sanctum',
@@ -29,12 +30,15 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('dimensions', DimensionsIndex::class)->name('dimensions.index');
-    Route::get('/dimensions/create', DimensionsForm::class)->name('dimensions.create');
-    Route::get('/dimensions/{dimension:id}/edit', DimensionsForm::class)->name('dimensions.edit');
-    Route::get('/dimensions/{dimension:id}/show', DimensionsShow::class)->name('dimensions.show');
+    Route::get('dimensions', DIndex::class)->name('dimensions.index');
+    Route::get('/dimensions/create', DForm::class)->name('dimensions.create');
+    Route::get('/dimensions/{dimension:id}/edit', DForm::class)->name('dimensions.edit');
+    Route::get('/dimensions/{dimension:id}/show', DShow::class)->name('dimensions.show');
 
-    Route::resource('questions', App\Http\Controllers\QuestionController::class);
+    Route::get('questions', QIndex::class)->name('questions.index');
+    Route::get('/questions/create', QForm::class)->name('questions.create');
+    Route::get('/questions/{question:id}/edit', QForm::class)->name('questions.edit');
+    Route::get('/questions/{question:id}/show', QShow::class)->name('questions.show');
 
     Route::resource('users', App\Http\Controllers\UserController::class);
 });
