@@ -52,7 +52,7 @@ class EmailVerificationTest extends DBTestCase
     public function test_email_can_not_verified_with_invalid_hash()
     {
         if (! Features::enabled(Features::emailVerification())) {
-           $this->markTestSkipped('Email verification not enabled.');
+            $this->markTestSkipped('Email verification not enabled.');
         }
 
         $user = User::factory()->unverified()->create();

@@ -9,7 +9,7 @@ use Tests\DBTestCase;
 class DimensionShowTest extends DBTestCase
 {
     /** @test */
-    function guests_cannot_view_dimensions()
+    public function guests_cannot_view_dimensions()
     {
         $dimension = Dimension::factory()->create();
 
@@ -18,7 +18,7 @@ class DimensionShowTest extends DBTestCase
     }
 
     /** @test */
-    function dimension_show_renders_properly()
+    public function dimension_show_renders_properly()
     {
         $dimension = Dimension::factory()->create();
 

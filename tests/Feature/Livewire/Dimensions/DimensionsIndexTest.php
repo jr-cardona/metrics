@@ -9,14 +9,14 @@ use Tests\DBTestCase;
 class DimensionsIndexTest extends DBTestCase
 {
     /** @test */
-    function guests_cannot_list_dimensions()
+    public function guests_cannot_list_dimensions()
     {
         $this->get(route('dimensions.index'))
             ->assertRedirect('login');
     }
 
     /** @test */
-    function dimensions_index_component_renders_properly()
+    public function dimensions_index_component_renders_properly()
     {
         $user = User::factory()->create();
 
@@ -26,7 +26,7 @@ class DimensionsIndexTest extends DBTestCase
     }
 
     /** @test */
-    function component_shows_dimensions_properly()
+    public function component_shows_dimensions_properly()
     {
         $dimensions = Dimension::factory(10)->create();
 

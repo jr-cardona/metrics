@@ -13,7 +13,7 @@ class DimensionDeleteTest extends TestCase
     use LazilyRefreshDatabase;
 
     /** @test */
-    function can_delete_dimensions()
+    public function can_delete_dimensions()
     {
         $dimension = Dimension::factory()->create();
 

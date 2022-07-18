@@ -11,7 +11,7 @@ use Tests\DBTestCase;
 class DimensionFormTest extends DBTestCase
 {
     /** @test */
-    function guests_cannot_create_or_update_dimensions()
+    public function guests_cannot_create_or_update_dimensions()
     {
         $this->get(route('dimensions.create'))
             ->assertRedirect('login');
@@ -23,7 +23,7 @@ class DimensionFormTest extends DBTestCase
     }
 
     /** @test */
-    function dimension_form_renders_properly()
+    public function dimension_form_renders_properly()
     {
         $user = User::factory()->create();
 
@@ -40,7 +40,7 @@ class DimensionFormTest extends DBTestCase
     }
 
     /** @test */
-    function blade_template_is_wired_properly()
+    public function blade_template_is_wired_properly()
     {
         Livewire::test('dimensions.dimensions-form')
             ->assertSeeHtml('wire:submit.prevent="save"')
@@ -48,7 +48,7 @@ class DimensionFormTest extends DBTestCase
     }
 
     /** @test */
-    function can_create_new_dimensions()
+    public function can_create_new_dimensions()
     {
         $user = User::factory()->create();
 
@@ -64,7 +64,7 @@ class DimensionFormTest extends DBTestCase
     }
 
     /** @test */
-    function can_update_dimensions()
+    public function can_update_dimensions()
     {
         $dimension = Dimension::factory()->create();
 
@@ -84,7 +84,7 @@ class DimensionFormTest extends DBTestCase
     }
 
     /** @test */
-    function name_is_required()
+    public function name_is_required()
     {
         Livewire::test('dimensions.dimensions-form')
             ->set('dimension.name', '')
@@ -94,7 +94,7 @@ class DimensionFormTest extends DBTestCase
     }
 
     /** @test */
-    function name_must_be_255_characters_max()
+    public function name_must_be_255_characters_max()
     {
         Livewire::test('dimensions.dimensions-form')
             ->set('dimension.name', Str::random(256))
@@ -107,7 +107,7 @@ class DimensionFormTest extends DBTestCase
     }
 
     /** @test */
-    function real_time_validation_works_for_name()
+    public function real_time_validation_works_for_name()
     {
         Livewire::test('dimensions.dimensions-form')
             ->set('dimension.name', '')
