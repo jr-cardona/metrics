@@ -18,7 +18,7 @@
             <div>
                 <x-jet-label for="email" value="{{ __('Email') }}"></x-jet-label>
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email"
-                             value="{{ App\Helpers\UserHelper::getDefaultLoginCredentials('email') ?? old('email') }}"
+                             value="{{ App\Helpers\LoginHelper::getDefaultLoginCredentials('email') ?? old('email') }}"
                              required
                              autofocus>
                 </x-jet-input>
@@ -27,7 +27,7 @@
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}"></x-jet-label>
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password"
-                             value="{{ App\Helpers\UserHelper::getDefaultLoginCredentials('password') }}"
+                             value="{{ App\Helpers\LoginHelper::getDefaultLoginCredentials('password') }}"
                              required
                              autocomplete="current-password">
                 </x-jet-input>
@@ -42,7 +42,8 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                       href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif

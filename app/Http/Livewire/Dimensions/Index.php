@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class DimensionsIndex extends Component
+class Index extends Component
 {
     use WithPagination;
 
@@ -25,7 +25,7 @@ class DimensionsIndex extends Component
             'dimensions' => Dimension::query()
                 ->where('name', 'like', "%$this->search%")
                 ->orderBy($this->sortField, $this->sortDesc ? 'desc' : 'asc')
-                ->paginate($this->paginate),
+                ->paginate($this->paginate, ['id', 'name', 'created_at']),
             'paginationOptions' => range(start: 10, end: 100, step: 10),
         ]);
     }

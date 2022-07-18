@@ -2,13 +2,14 @@
 
 namespace Tests\Feature\Livewire\Dimensions;
 
+use App\Http\Livewire\Dimensions\Form;
 use App\Models\Dimension;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Tests\DBTestCase;
 
-class DimensionFormTest extends DBTestCase
+class FormTest extends DBTestCase
 {
     /** @test */
     public function guests_cannot_create_or_update_dimensions()
@@ -28,13 +29,13 @@ class DimensionFormTest extends DBTestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('dimensions.create'))
-            ->assertSeeLivewire('dimensions.dimensions-form')
+            ->assertSeeLivewire(Form::getName())
             ->assertSeeText(__('Create'));
 
         $dimension = Dimension::factory()->create();
 
         $this->actingAs($user)->get($dimension->url()->edit())
-            ->assertSeeLivewire('dimensions.dimensions-form')
+            ->assertSeeLivewire(Form::getName())
             ->assertSeeText(__('Edit'))
             ->assertSeeText($dimension->name);
     }
@@ -42,7 +43,7 @@ class DimensionFormTest extends DBTestCase
     /** @test */
     public function blade_template_is_wired_properly()
     {
-        Livewire::test('dimensions.dimensions-form')
+        Livewire::test(Form::getName())
             ->assertSeeHtml('wire:submit.prevent="save"')
             ->assertSeeHtml('wire:model="dimension.name"');
     }
@@ -52,7 +53,7 @@ class DimensionFormTest extends DBTestCase
     {
         $user = User::factory()->create();
 
-        Livewire::actingAs($user)->test('dimensions.dimensions-form')
+        Livewire::actingAs($user)->test(Form::getName())
             ->set('dimension.name', 'New dimension')
             ->call('save')
             ->assertSessionHas('flash.banner')
@@ -70,7 +71,7 @@ class DimensionFormTest extends DBTestCase
 
         $user = User::factory()->create();
 
-        Livewire::actingAs($user)->test('dimensions.dimensions-form', ['dimension' => $dimension])
+        Livewire::actingAs($user)->test(Form::getName(), ['dimension' => $dimension])
             ->assertSet('dimension.name', $dimension->name)
             ->set('dimension.name', 'Updated name')
             ->call('save')
@@ -86,7 +87,7 @@ class DimensionFormTest extends DBTestCase
     /** @test */
     public function name_is_required()
     {
-        Livewire::test('dimensions.dimensions-form')
+        Livewire::test(Form::getName())
             ->set('dimension.name', '')
             ->call('save')
             ->assertHasErrors(['dimension.name' => 'required'])
@@ -96,7 +97,7 @@ class DimensionFormTest extends DBTestCase
     /** @test */
     public function name_must_be_255_characters_max()
     {
-        Livewire::test('dimensions.dimensions-form')
+        Livewire::test(Form::getName())
             ->set('dimension.name', Str::random(256))
             ->call('save')
             ->assertHasErrors(['dimension.name' => 'max:255'])
@@ -109,7 +110,7 @@ class DimensionFormTest extends DBTestCase
     /** @test */
     public function real_time_validation_works_for_name()
     {
-        Livewire::test('dimensions.dimensions-form')
+        Livewire::test(Form::getName())
             ->set('dimension.name', '')
             ->assertHasErrors(['dimension.name' => 'required'])
             ->set('dimension.name', Str::random(256))

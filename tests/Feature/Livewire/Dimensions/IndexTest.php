@@ -2,11 +2,12 @@
 
 namespace Tests\Feature\Livewire\Dimensions;
 
+use App\Http\Livewire\Dimensions\Index;
 use App\Models\Dimension;
 use App\Models\User;
 use Tests\DBTestCase;
 
-class DimensionsIndexTest extends DBTestCase
+class IndexTest extends DBTestCase
 {
     /** @test */
     public function guests_cannot_list_dimensions()
@@ -22,7 +23,7 @@ class DimensionsIndexTest extends DBTestCase
 
         $this->actingAs($user)
             ->get(route('dimensions.index'))
-            ->assertSeeLivewire('dimensions.dimensions-index');
+            ->assertSeeLivewire(Index::getName());
     }
 
     /** @test */
@@ -34,7 +35,7 @@ class DimensionsIndexTest extends DBTestCase
 
         $response = $this->actingAs($user)
             ->get(route('dimensions.index'))
-            ->assertSeeLivewire('dimensions.dimensions-index');
+            ->assertSeeLivewire(Index::getName());
 
         $dimensions->each(fn ($dimension) => $response->assertSeeText($dimension->name));
     }

@@ -2,11 +2,12 @@
 
 namespace Tests\Feature\Livewire\Dimensions;
 
+use App\Http\Livewire\Dimensions\Show;
 use App\Models\Dimension;
 use App\Models\User;
 use Tests\DBTestCase;
 
-class DimensionShowTest extends DBTestCase
+class ShowTest extends DBTestCase
 {
     /** @test */
     public function guests_cannot_view_dimensions()
@@ -25,7 +26,7 @@ class DimensionShowTest extends DBTestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)->get($dimension->url()->show())
-            ->assertSeeLivewire('dimensions.dimensions-show')
+            ->assertSeeLivewire(Show::getName())
             ->assertSeeText(__('Create'));
     }
 }

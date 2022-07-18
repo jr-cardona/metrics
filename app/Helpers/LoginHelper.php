@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use App\Models\User;
 
-class UserHelper
+class LoginHelper
 {
     public static function getDefaultLoginCredentials(string $field): string
     {
@@ -13,8 +13,7 @@ class UserHelper
             'password' => '',
         ];
 
-        if (config('app.env') !== 'production') {
-            $user = User::query()->first(['email']);
+        if (config('app.env') !== 'production' && $user = User::query()->first(['email'])) {
             $credentials['email'] = $user->email;
             $credentials['password'] = 'password';
         }
