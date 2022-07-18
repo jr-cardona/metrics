@@ -16,7 +16,7 @@ class Delete extends Component
 
     public function render(): View
     {
-        return view('livewire.components.delete-modal');
+        return view('components.delete-modal');
     }
 
     public function delete()
