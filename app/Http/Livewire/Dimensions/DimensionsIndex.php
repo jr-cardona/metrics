@@ -13,6 +13,8 @@ class DimensionsIndex extends Component
 
     public string $search = '';
 
+    public string $paginate = '';
+
     public string $sortField = 'created_at';
 
     public bool $sortDesc = true;
@@ -23,7 +25,8 @@ class DimensionsIndex extends Component
             'dimensions' => Dimension::query()
                 ->where('name', 'like', "%$this->search%")
                 ->orderBy($this->sortField, $this->sortDesc ? 'desc' : 'asc')
-                ->paginate(10)
+                ->paginate($this->paginate),
+            'paginationOptions' => range(start: 10, end: 100, step: 10),
         ]);
     }
 
