@@ -20,6 +20,8 @@
     <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-jet-form-section submit="save">
+                <x-slot name="title"></x-slot>
+                <x-slot name="description"></x-slot>
                 <x-slot name="form">
                     <div class="col-span-6 sm:col-span-4">
                         <x-jet-label for="name" :value="__('Name')"></x-jet-label>
