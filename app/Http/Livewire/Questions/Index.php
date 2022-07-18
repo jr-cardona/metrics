@@ -26,6 +26,8 @@ class Index extends IndexComponent
                     'dimension_id',
                 ]),
             'paginationOptions' => range(start: 10, end: 100, step: 10),
+            'createRoute' => route('questions.create'),
+            'createLabel' => __('New question'),
         ]);
     }
 }

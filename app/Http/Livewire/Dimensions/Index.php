@@ -16,6 +16,8 @@ class Index extends IndexComponent
                 ->orderBy($this->sortField, $this->sortDesc ? 'desc' : 'asc')
                 ->paginate($this->paginate, ['id', 'name', 'created_at']),
             'paginationOptions' => range(start: 10, end: 100, step: 10),
+            'createRoute' => route('dimensions.create'),
+            'createLabel' => __('New dimension'),
         ]);
     }
 }
