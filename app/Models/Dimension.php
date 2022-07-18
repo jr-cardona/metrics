@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Presenters\URLTrait;
+use App\Presenters\HasURLPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Dimension extends Model
 {
     use HasFactory;
-    use URLTrait;
+    use HasURLPresenter;
     use SoftDeletes;
 
     /**

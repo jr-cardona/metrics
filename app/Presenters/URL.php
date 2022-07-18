@@ -7,11 +7,8 @@ use Illuminate\Support\Str;
 
 class URL
 {
-    protected Model $model;
-
-    public function __construct($model)
+    public function __construct(protected Model $model)
     {
-        $this->model = $model;
     }
 
     public function __call(string $name, array $arguments)
