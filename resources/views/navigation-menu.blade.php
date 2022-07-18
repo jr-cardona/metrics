@@ -18,6 +18,9 @@
                     <x-jet-nav-link href="{{ route('dimensions.index') }}" :active="request()->routeIs('dimensions.*')">
                         {{ __('Dimensions') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('questions.index') }}" :active="request()->routeIs('questions.*')">
+                        {{ __('Questions') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

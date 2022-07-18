@@ -2,23 +2,12 @@
 
 namespace App\Http\Livewire\Dimensions;
 
+use App\Http\Livewire\Components\IndexComponent;
 use App\Models\Dimension;
 use Illuminate\View\View;
-use Livewire\Component;
-use Livewire\WithPagination;
 
-class Index extends Component
+class Index extends IndexComponent
 {
-    use WithPagination;
-
-    public string $search = '';
-
-    public string $paginate = '';
-
-    public string $sortField = 'created_at';
-
-    public bool $sortDesc = true;
-
     public function render(): View
     {
         return view('livewire.dimensions.index', [
@@ -28,16 +17,5 @@ class Index extends Component
                 ->paginate($this->paginate, ['id', 'name', 'created_at']),
             'paginationOptions' => range(start: 10, end: 100, step: 10),
         ]);
-    }
-
-    public function sortBy(string $field)
-    {
-        if ($this->sortField === $field) {
-            $this->sortDesc = !$this->sortDesc;
-            return;
-        }
-
-        $this->sortDesc = true;
-        $this->sortField = $field;
     }
 }
