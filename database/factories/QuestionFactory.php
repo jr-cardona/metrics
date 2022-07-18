@@ -27,7 +27,7 @@ class QuestionFactory extends Factory
             'title' => $this->faker->sentence(4),
             'is_active' => $this->faker->boolean,
             'type' => $this->faker->randomElement(["text","textarea","checkbox","check","date","datetime","select","integer","radiobutton","phone","email","url"]),
-            'number' => $this->faker->randomNumber(),
+            'number' => $this->faker->randomNumber(3),
             'dimension_id' => Dimension::factory(),
         ];
     }
