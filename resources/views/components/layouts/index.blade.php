@@ -19,9 +19,9 @@
                 </div>
             </div>
 
-            <a href="{{ $createRoute }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition">
+            <a href="{{ $createRoute ?? '' }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition">
                 <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                {{ $createLabel }}
+                {{ $createLabel ?? 'New' }}
             </a>
         </div>
         <div class="flex flex-col mt-10">
@@ -31,7 +31,7 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-indigo-600 text-white">
                                 <tr>
-                                    @yield('header')
+                                    {{ $header }}
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">{{ __('Actions') }}</span>
                                     </th>
@@ -39,18 +39,18 @@
                             </thead>
                             <tfoot class="bg-indigo-600 text-white">
                                 <tr>
-                                    @yield('header')
+                                    {{ $header }}
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">{{ __('Actions') }}</span>
                                     </th>
                                 </tr>
                             </tfoot>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @yield('content')
+                            {{ $content }}
                             </tbody>
                         </table>
                         <div class="px-4 py-3 bg-gray-50 border-t">
-                            @yield('links')
+                            {{ $links }}
                         </div>
                     </div>
                 </div>
