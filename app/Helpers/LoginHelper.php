@@ -13,7 +13,7 @@ class LoginHelper
             'password' => '',
         ];
 
-        if (config('app.env') !== 'production' && $user = User::query()->first(['email'])) {
+        if (config('app.env') !== 'production' && $user = User::first(['email'])) {
             $credentials['email'] = $user->email;
             $credentials['password'] = 'password';
         }
