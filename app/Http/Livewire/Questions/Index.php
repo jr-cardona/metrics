@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire\Questions;
 
-use App\Http\Livewire\Components\IndexComponent;
 use App\Models\Question;
 use Illuminate\View\View;
 
-class Index extends IndexComponent
+class Index extends \App\Http\Livewire\Components\Index
 {
     public ?string $sortField = 'number';
 

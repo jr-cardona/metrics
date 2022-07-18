@@ -46,7 +46,7 @@ class DimensionSeeder extends Seeder
             ],
             [
                 'number' => 25,
-                'title' => 'Cuando los demás se muestran especialmente amigables, me pregunto qué intenciones tendrán.',
+                'title' => 'He amenazado a gente que conozco.',
             ],
         ]);
 

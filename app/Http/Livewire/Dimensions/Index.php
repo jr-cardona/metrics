@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire\Dimensions;
 
-use App\Http\Livewire\Components\IndexComponent;
 use App\Models\Dimension;
 use Illuminate\View\View;
 
-class Index extends IndexComponent
+class Index extends \App\Http\Livewire\Components\Index
 {
     public function render(): View
     {

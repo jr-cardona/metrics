@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Components;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class IndexComponent extends Component
+class Index extends Component
 {
     use WithPagination;
 

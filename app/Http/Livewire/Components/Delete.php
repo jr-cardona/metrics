@@ -6,24 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class DeleteModal extends Component
+class Delete extends Component
 {
-    protected $listeners = ['confirmDeletion'];
-
-    public Model $model;
+    protected $listeners = ['openDeleteModal'];
 
     public bool $showDeleteModal = false;
+
+    public $model;
 
     public function render(): View
     {
         return view('livewire.components.delete-modal');
-    }
-
-    public function confirmDeletion($model)
-    {
-        if ($this->model->getKey() === $model['id']) {
-            $this->showDeleteModal = true;
-        }
     }
 
     public function delete()
