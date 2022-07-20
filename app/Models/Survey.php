@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * App\Models\Survey
  *
+ * @property int $id
+ * @property string $title
+ * @property string|null $description
  * @property-read \Illuminate\Database\Eloquent\Collection<Dimension> $dimensions
  * @property-read int|null $dimensions_count
  * @mixin \Eloquent

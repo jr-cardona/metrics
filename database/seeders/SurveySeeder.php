@@ -15,7 +15,7 @@ class SurveySeeder extends Seeder
     public function run(): void
     {
         Survey::create([
-            'name' => 'CUESTIONARIO DE AGRESIÓN - AQ EN POBLACIÓN COLOMBIANA',
+            'title' => 'CUESTIONARIO DE AGRESIÓN - AQ EN POBLACIÓN COLOMBIANA',
             'description' => '
                 Lea atentamente cada una de las frases y marque con una X la que más se ajusta
                 a su forma de ser. Recuerde que no hay respuestas buenas ni malas.
