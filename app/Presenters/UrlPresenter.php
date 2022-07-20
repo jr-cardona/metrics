@@ -5,7 +5,7 @@ namespace App\Presenters;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class URL
+class UrlPresenter
 {
     public function __construct(protected Model $model)
     {
