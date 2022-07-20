@@ -22,8 +22,8 @@
                                 </th>
                             </tr>
                             </tfoot>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                            {{ $content }}
+                            <tbody class="bg-white divide-y divide-gray-200" wire:sortable="updateQuestionsOrder">
+                                {{ $content }}
                             </tbody>
                         </table>
                         @isset($links)
