@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+class CreateSurveysTable extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,11 +13,11 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('dimensions', function (Blueprint $table) {
+        Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('survey_id')->nullable()->constrained()->nullOnDelete();
-            $table->softDeletes();
+            $table->string('title');
+            $table->boolean('is_active');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('dimensions');
+        Schema::dropIfExists('surveys');
     }
-};
+}

@@ -14,11 +14,11 @@ return new class () extends Migration {
             $table->id();
             $table->unsignedSmallInteger('number');
             $table->string('title', 500);
-            $table->boolean('is_active')->default(1);
+            $table->text('description')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->string('type', 50)->default('radio');
             $table->json('options')->nullable();
             $table->foreignId('dimension_id')->nullable()->constrained()->nullOnDelete();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

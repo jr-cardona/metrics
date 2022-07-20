@@ -2,20 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Enums\QuestionTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Dimension;
-use App\Models\Question;
+use App\Models\Survey;
 
-class QuestionFactory extends Factory
+class SurveyFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Question::class;
+    protected $model = Survey::class;
 
     /**
      * Define the model's default state.
@@ -27,11 +25,7 @@ class QuestionFactory extends Factory
         return [
             'title' => $this->faker->sentence(4),
             'is_active' => $this->faker->boolean(),
-            'type' => $this->faker->randomElement(QuestionTypes::values()),
-            'number' => $this->faker->randomNumber(3),
             'description' => $this->faker->text(),
-            'options' => '{}',
-            'dimension_id' => Dimension::factory(),
         ];
     }
 }

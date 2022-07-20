@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Dimension;
+use App\Models\Survey;
 
 class DimensionFactory extends Factory
 {
@@ -24,6 +25,7 @@ class DimensionFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'survey_id' => Survey::factory(),
         ];
     }
 }
