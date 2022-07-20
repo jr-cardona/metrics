@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Enums\DocumentTypes;
 use App\Models\Dimension;
 use App\Models\Survey;
 use Illuminate\Database\Seeder;
@@ -18,44 +17,10 @@ class DimensionSeeder extends Seeder
     {
         $surveyId = Survey::query()->value('id');
 
-        $participantInformation = Dimension::create(['name' => 'Información del participante', 'survey_id' => $surveyId]);
         $physicalAggression = Dimension::create(['name' => 'Agresión física', 'survey_id' => $surveyId]);
         $verbalAggression = Dimension::create(['name' => 'Agresión verbal', 'survey_id' => $surveyId]);
         $rage = Dimension::create(['name' => 'Ira', 'survey_id' => $surveyId]);
         $hostility = Dimension::create(['name' => 'Hostilidad', 'survey_id' => $surveyId]);
-
-        $participantInformation->questions()->createMany([
-            [
-                'number' => 1,
-                'title' => 'Tipo de documento',
-                'type' => 'select',
-                'options' => DocumentTypes::array(),
-            ],
-            [
-                'number' => 2,
-                'title' => 'Número de documento',
-                'type' => 'integer',
-                'options' => [],
-            ],
-            [
-                'number' => 3,
-                'title' => 'Nombres',
-                'type' => 'text',
-                'options' => [],
-            ],
-            [
-                'number' => 4,
-                'title' => 'Apellidos',
-                'type' => 'text',
-                'options' => [],
-            ],
-            [
-                'number' => 5,
-                'title' => 'Institución',
-                'type' => 'text',
-                'options' => [],
-            ]
-        ]);
 
         $physicalAggression->questions()->createMany([
             [

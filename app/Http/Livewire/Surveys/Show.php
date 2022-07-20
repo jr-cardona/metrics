@@ -13,13 +13,8 @@ class Show extends Component
 
     public function render(): View
     {
-        $this->survey->load('dimensions.questions');
-        return view('livewire.surveys.show');
-    }
-
-    public function toggleEnabled(Question $question)
-    {
-        $question->is_active = !$question->is_active;
-        $question->save();
+        $participantQuestions = Question::query()->whereDoesntHave('dimension')->get();
+        $surveyQuestions = $this->survey->questions()->with('dimension:id,name')->orderBy('number')->get();
+        return view('livewire.surveys.show', compact('participantQuestions', 'surveyQuestions'));
     }
 }

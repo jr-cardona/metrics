@@ -6,6 +6,7 @@ use App\Presenters\HasURLPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * App\Models\Survey
@@ -42,5 +43,10 @@ class Survey extends Model
     public function dimensions(): HasMany
     {
         return $this->hasMany(Dimension::class);
+    }
+
+    public function questions(): HasManyThrough
+    {
+        return $this->hasManyThrough(Question::class, Dimension::class);
     }
 }

@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @mixin \Eloquent
  * @property array|null $options
  */
-class Question extends Model
+class Question extends ModelBase
 {
     use HasFactory;
     use HasURLPresenter;
