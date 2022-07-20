@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Dimension whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dimension whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Survey|null $survey
  */
 class Dimension extends Model
 {

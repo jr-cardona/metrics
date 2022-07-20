@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * App\Models\Survey
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection<Dimension> $dimensions
+ * @property-read int|null $dimensions_count
+ * @mixin \Eloquent
+ */
 class Survey extends Model
 {
     use HasFactory;
