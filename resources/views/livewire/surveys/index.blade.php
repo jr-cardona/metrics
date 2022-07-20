@@ -42,7 +42,6 @@
                 </td>
             </tr>
         @endforeach
-        <livewire:surveys.delete></livewire:surveys.delete>
     </x-slot>
     <x-slot name="links">
         {{ $surveys->links() }}

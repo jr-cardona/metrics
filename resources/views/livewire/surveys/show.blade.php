@@ -4,7 +4,7 @@
         @foreach($survey->dimensions as $dimension)
             <x-index>
                 <x-slot name="header">
-                    <h2 class="text-xl">{{ __('Dimension: ') . $dimension->name }}</h2>
+                    <h2 class="text-xl text-center">{{ __('Dimension: ') . $dimension->name }}</h2>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         {{ __('Title') }}
                     </th>
@@ -21,7 +21,7 @@
                 <x-slot name="content">
                     @foreach($dimension->questions as $question)
                         <tr class="even:bg-gray-50">
-                            <td style="width: 60%" class="w-4/5 px-6 py-4 whitespace-nowrap">
+                            <td style="width: 50%" class="px-6 py-4">
                                 <div class="text-sm text-gray-600">{{ $question->title }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -31,7 +31,11 @@
                                 <div class="text-sm text-gray-600">{{ implode(', ', $question->options) }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-600">{{ $question->is_active }}</div>
+                                <livewire:components.toggle
+                                    :key="$question->id"
+                                    :field="'is_active'"
+                                    :model="$question"
+                                ></livewire:components.toggle>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <x-actions-buttons>
@@ -40,7 +44,6 @@
                             </td>
                         </tr>
                     @endforeach
-                    <livewire:questions.delete></livewire:questions.delete>
                 </x-slot>
             </x-index>
         @endforeach

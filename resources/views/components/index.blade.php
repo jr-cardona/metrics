@@ -1,6 +1,6 @@
 <div class="mt-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        @if(request()->routeIs('*.index'))
+        @isset($paginationOptions)
             <div class="flex justify-between">
                 <div class="flex items-center">
                     <label for="search" class="mr-2">
@@ -24,7 +24,7 @@
                     {{ $createLabel ?? 'New' }}
                 </a>
             </div>
-        @endif
+        @endisset
         <div class="flex flex-col mt-10">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -38,7 +38,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            @if(request()->routeIs('*.index'))
+                            @isset($paginationOptions)
                                 <tfoot class="bg-indigo-600 text-white">
                                     <tr>
                                         {{ $header }}
@@ -47,7 +47,7 @@
                                         </th>
                                     </tr>
                                 </tfoot>
-                            @endif
+                            @endisset
                             <tbody class="bg-white divide-y divide-gray-200">
                             {{ $content }}
                             </tbody>

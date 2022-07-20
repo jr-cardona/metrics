@@ -12,11 +12,19 @@ class Delete extends Component
 
     public bool $showDeleteModal = false;
 
-    public $model;
+    public string $modelClass;
+
+    public Model $model;
+
+    public function openDeleteModal(string $id)
+    {
+        $this->model = (new $this->modelClass)->find($id);
+        $this->showDeleteModal = true;
+    }
 
     public function render(): View
     {
-        return view('components.delete-modal');
+        return view('livewire.components.delete-modal');
     }
 
     public function delete()
