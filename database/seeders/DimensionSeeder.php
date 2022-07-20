@@ -35,21 +35,25 @@ class DimensionSeeder extends Seeder
                 'number' => 2,
                 'title' => 'Número de documento',
                 'type' => 'integer',
+                'options' => [],
             ],
             [
                 'number' => 3,
                 'title' => 'Nombres',
                 'type' => 'text',
+                'options' => [],
             ],
             [
                 'number' => 4,
                 'title' => 'Apellidos',
                 'type' => 'text',
+                'options' => [],
             ],
             [
                 'number' => 5,
                 'title' => 'Institución',
                 'type' => 'text',
+                'options' => [],
             ]
         ]);
 

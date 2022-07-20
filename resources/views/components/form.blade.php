@@ -1,20 +1,18 @@
 <div class="py-2">
     <x-slot name="header">
         <div class="font-semibold text-xl text-gray-800 leading-tight">
-            <h2 class="">
-                <a class="text-indigo-400 hover:text-indigo-600" href="{{ $model->url()->index() }}">
-                    {{ $title }}
-                </a>
-                @if($model->exists)
-                    <span class="mx-5">></span>
-                    {{ $model->name ?? $model->title }}
-                    <span class="mx-5">></span>
-                    <span>{{ __('Edit') }}</span>
-                @else
-                    <span class="mx-5">></span>
-                    <span>{{ __('Create') }}</span>
-                @endif
-            </h2>
+            <a class="text-indigo-400 hover:text-indigo-600" href="{{ $model->url()->index() }}">
+                {{ $title }}
+            </a>
+            @if($model->exists)
+                <span class="mx-5">></span>
+                {{ $model->name ?? $model->title }}
+                <span class="mx-5">></span>
+                <span>{{ __('Edit') }}</span>
+            @else
+                <span class="mx-5">></span>
+                <span>{{ __('Create') }}</span>
+            @endif
         </div>
     </x-slot>
     <div>

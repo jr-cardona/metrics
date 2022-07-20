@@ -5,12 +5,6 @@
     <x-slot name="header">
         <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
             <x-sort-button :sortField="$sortField" :sortDesc="$sortDesc">
-                <x-slot name="field">number</x-slot>
-                <x-slot name="fieldLabel">{{ __('Number') }}</x-slot>
-            </x-sort-button>
-        </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-            <x-sort-button :sortField="$sortField" :sortDesc="$sortDesc">
                 <x-slot name="field">title</x-slot>
                 <x-slot name="fieldLabel">{{ __('Title') }}</x-slot>
             </x-sort-button>
@@ -32,9 +26,6 @@
         @foreach($questions as $question)
             <tr class="even:bg-gray-50">
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-600">{{ $question->number }}</div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-600">{{ $question->title }}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
@@ -51,7 +42,6 @@
                     <x-actions-buttons>
                         <x-slot name="show">{{ $question->url()->show() }}</x-slot>
                         <x-slot name="edit">{{ $question->url()->edit() }}</x-slot>
-                        <x-slot name="id">{{ $question->getKey() }}</x-slot>
                     </x-actions-buttons>
                 </td>
             </tr>

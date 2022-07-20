@@ -38,7 +38,6 @@
                     <x-actions-buttons>
                         <x-slot name="show">{{ $survey->url()->show() }}</x-slot>
                         <x-slot name="edit">{{ $survey->url()->edit() }}</x-slot>
-                        <x-slot name="id">{{ $survey->getKey() }}</x-slot>
                     </x-actions-buttons>
                 </td>
             </tr>

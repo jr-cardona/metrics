@@ -8,14 +8,14 @@ use Illuminate\View\View;
 
 class Index extends \App\Http\Livewire\Components\Index
 {
-    public ?string $sortField = 'number';
+    public ?string $sortField = 'dimension_id';
 
     public function render(): View
     {
         $viewModel = new QuestionIndexViewModel();
 
         $questions = Question::query()
-            ->select(['id', 'number', 'title', 'is_active', 'dimension_id'])
+            ->select(['id', 'title', 'is_active', 'dimension_id'])
             ->with('dimension:id,name')
             ->where('title', 'like', "%$this->search%")
             ->orderBy($this->sortField, $this->sortDesc ? 'desc' : 'asc')
