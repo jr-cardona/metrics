@@ -24,7 +24,10 @@
             </x-slot>
             <x-slot name="content">
                 @foreach($participantQuestions as $question)
-                    <tr class="even:bg-gray-50">
+                    <tr wire:sortable.item="{{ $question->getKey() }}"
+                        wire:key="question-{{ $question->getKey() }}"
+                        class="even:bg-gray-50"
+                    >
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">{{ $question->number }}</div>
                         </td>
@@ -79,7 +82,10 @@
             </x-slot>
             <x-slot name="content">
                 @foreach($surveyQuestions as $question)
-                    <tr class="even:bg-gray-50">
+                    <tr wire:sortable.item="{{ $question->getKey() }}"
+                        wire:key="question-{{ $question->getKey() }}"
+                        class="even:bg-gray-50"
+                    >
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">{{ $question->number }}</div>
                         </td>
@@ -102,7 +108,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <livewire:components.toggle
-                                :key="$question->id"
+                                :key="$question->getKey()"
                                 :field="'is_active'"
                                 :model="$question"
                             ></livewire:components.toggle>
