@@ -20,11 +20,6 @@ class Form extends \App\Http\Livewire\Components\Form
         return view('livewire.questions.form');
     }
 
-    protected function rules(): array
-    {
-        return (new QuestionSaveRequest())->rules();
-    }
-
     public function save()
     {
         $this->validate();
@@ -34,5 +29,10 @@ class Form extends \App\Http\Livewire\Components\Form
         session()->flash('flash.banner', __('Question saved.'));
 
         $this->redirectRoute('questions.index');
+    }
+
+    protected function rules(): array
+    {
+        return (new QuestionSaveRequest())->rules();
     }
 }
