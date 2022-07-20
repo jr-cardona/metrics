@@ -108,7 +108,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <livewire:components.toggle
-                                :key="$question->getKey()"
+                                :key="'question-'.$question->getKey()"
                                 :field="'is_active'"
                                 :model="$question"
                             ></livewire:components.toggle>
