@@ -2,7 +2,18 @@
     <x-slot name="header">
         <div class="font-semibold text-xl text-gray-800 leading-tight">
             <h2 class="">
-                {{ $navigator }}
+                <a class="text-indigo-400 hover:text-indigo-600" href="{{ $model->url()->index() }}">
+                    {{ $title }}
+                </a>
+                @if($model->exists)
+                    <span class="mx-5">></span>
+                    {{ $model->name ?? $model->title }}
+                    <span class="mx-5">></span>
+                    <span>{{ __('Edit') }}</span>
+                @else
+                    <span class="mx-5">></span>
+                    <span>{{ __('Create') }}</span>
+                @endif
             </h2>
         </div>
     </x-slot>
@@ -15,7 +26,7 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-                    <a href="{{ $back }}" class="mr-auto">
+                    <a href="{{ $model->url()->index() }}" class="mr-auto">
                         <x-jet-danger-button>
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>

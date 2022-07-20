@@ -1,11 +1,5 @@
 <?php
 
-use App\Http\Livewire\Dimensions\Form as DForm;
-use App\Http\Livewire\Dimensions\Index as DIndex;
-use App\Http\Livewire\Dimensions\Show as DShow;
-use App\Http\Livewire\Questions\Form as QForm;
-use App\Http\Livewire\Questions\Index as QIndex;
-use App\Http\Livewire\Questions\Show as QShow;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,19 +20,32 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-    Route::get('dimensions', DIndex::class)->name('dimensions.index');
-    Route::get('/dimensions/create', DForm::class)->name('dimensions.create');
-    Route::get('/dimensions/{dimension:id}/edit', DForm::class)->name('dimensions.edit');
-    Route::get('/dimensions/{dimension:id}/show', DShow::class)->name('dimensions.show');
+    Route::get('surveys', App\Http\Livewire\Surveys\Index::class)
+        ->name('surveys.index');
+    Route::get('/surveys/create', App\Http\Livewire\Surveys\Form::class)
+        ->name('surveys.create');
+    Route::get('/surveys/{survey}/edit', App\Http\Livewire\Surveys\Form::class)
+        ->name('surveys.edit');
+    Route::get('/surveys/{survey}/show', App\Http\Livewire\Surveys\Show::class)
+        ->name('surveys.show');
 
-    Route::get('questions', QIndex::class)->name('questions.index');
-    Route::get('/questions/create', QForm::class)->name('questions.create');
-    Route::get('/questions/{question:id}/edit', QForm::class)->name('questions.edit');
-    Route::get('/questions/{question:id}/show', QShow::class)->name('questions.show');
+    Route::get('dimensions', App\Http\Livewire\Dimensions\Index::class)
+        ->name('dimensions.index');
+    Route::get('/dimensions/create', App\Http\Livewire\Dimensions\Form::class)
+        ->name('dimensions.create');
+    Route::get('/dimensions/{dimension}/edit', App\Http\Livewire\Dimensions\Form::class)
+        ->name('dimensions.edit');
+    Route::get('/dimensions/{dimension}/show', App\Http\Livewire\Dimensions\Show::class)
+        ->name('dimensions.show');
 
-    Route::resource('users', App\Http\Controllers\UserController::class);
+    Route::get('questions', App\Http\Livewire\Questions\Index::class)
+        ->name('questions.index');
+    Route::get('/questions/create', App\Http\Livewire\Questions\Form::class)
+        ->name('questions.create');
+    Route::get('/questions/{question}/edit', App\Http\Livewire\Questions\Form::class)
+        ->name('questions.edit');
+    Route::get('/questions/{question}/show', App\Http\Livewire\Questions\Show::class)
+        ->name('questions.show');
 });
