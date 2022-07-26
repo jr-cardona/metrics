@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/login');
+Route::get('/surveys/{survey}/answer', App\Http\Livewire\Surveys\Answer::class)
+    ->name('surveys.show');
 
 Route::middleware([
     'auth:sanctum',

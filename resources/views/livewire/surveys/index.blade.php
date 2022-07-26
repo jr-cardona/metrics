@@ -1,7 +1,4 @@
-<x-index :paginationOptions="$paginationOptions"
-         :createRoute="$createRoute"
-         :createLabel="$createLabel"
->
+<x-index>
     <x-slot name="title">
         <div class="flex justify-between">
             <div class="flex items-center">

@@ -14,7 +14,7 @@ class Show extends Component
     public function render(): View
     {
         $participantQuestions = Question::query()->whereDoesntHave('dimension')->orderBy('number')->get();
-        $surveyQuestions = $this->survey->questions()->with('dimension:id,name')->orderBy('number')->get();
+        $surveyQuestions = $this->survey->questions()->with('dimension:id,name')->get();
         return view('livewire.surveys.show', compact('participantQuestions', 'surveyQuestions'));
     }
 

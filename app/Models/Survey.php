@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string $title
  * @property string|null $description
  * @property-read \Illuminate\Database\Eloquent\Collection<Dimension> $dimensions
+ * @property-read \Illuminate\Database\Eloquent\Collection<Question> $questions
  * @property-read int|null $dimensions_count
  * @mixin \Eloquent
  */
@@ -47,6 +48,6 @@ class Survey extends Model
 
     public function questions(): HasManyThrough
     {
-        return $this->hasManyThrough(Question::class, Dimension::class);
+        return $this->hasManyThrough(Question::class, Dimension::class)->orderBy('number');
     }
 }
