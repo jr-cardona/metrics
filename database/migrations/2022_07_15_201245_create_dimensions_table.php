@@ -15,7 +15,6 @@ return new class () extends Migration {
         Schema::create('dimensions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('survey_id')->nullable()->constrained()->nullOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

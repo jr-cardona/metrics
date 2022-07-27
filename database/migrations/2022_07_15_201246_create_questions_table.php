@@ -17,6 +17,7 @@ return new class () extends Migration {
             $table->boolean('is_active')->default(true);
             $table->string('type', 50)->default('radio');
             $table->json('options')->nullable();
+            $table->foreignId('survey_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('dimension_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });

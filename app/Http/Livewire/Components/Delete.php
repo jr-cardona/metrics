@@ -16,7 +16,7 @@ class Delete extends Component
 
     public Model $model;
 
-    public function openDeleteModal(string $id)
+    public function openDeleteModal(int $id)
     {
         $this->model = (new $this->modelClass)->find($id);
         $this->showDeleteModal = true;

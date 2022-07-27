@@ -53,6 +53,15 @@ class Question extends ModelBase
         'options' => 'array',
     ];
 
+    /**
+     * The model's attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'options' => '{}',
+    ];
+
     public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
@@ -61,5 +70,18 @@ class Question extends ModelBase
     public function dimension(): BelongsTo
     {
         return $this->belongsTo(Dimension::class);
+    }
+
+    public function getLastNumber(): int
+    {
+        if (!empty($this->dimension_id)) {
+            return $this->dimension->survey->questions()
+                ->orderBy('number', 'desc')
+                ->value('number');
+        }
+
+        return Question::whereDoesntHave('dimension')
+            ->orderBy('number', 'desc')
+            ->value('number');
     }
 }
