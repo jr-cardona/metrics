@@ -37,7 +37,7 @@
                         class="even:bg-gray-50"
                     >
                         <td class="px-6 py-4">
-                            <div class="text-sm text-gray-600">{{ $question->number }}</div>
+                            <div class="text-sm text-gray-600">{{ $question->pivot->number }}</div>
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">{{ $question->title }}</div>
@@ -107,7 +107,7 @@
                         class="even:bg-gray-50"
                     >
                         <td class="px-6 py-4">
-                            <div class="text-sm text-gray-600">{{ $question->number }}</div>
+                            <div class="text-sm text-gray-600">{{ $question->pivot->number }}</div>
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">{{ $question->title }}</div>
@@ -146,6 +146,6 @@
                 @endforeach
             </x-slot>
         </x-index>
-        <livewire:questions.survey.form></livewire:questions.survey.form>
+        <livewire:questions.form></livewire:questions.form>
     </x-slot>
 </x-show>

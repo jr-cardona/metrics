@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Enums\DocumentTypes;
 use App\Models\Dimension;
 use App\Models\Question;
-use App\Models\QuestionCategory;
+use App\Models\Survey;
 use Illuminate\Database\Seeder;
 
 class QuestionSeeder extends Seeder
@@ -17,189 +17,195 @@ class QuestionSeeder extends Seeder
      */
     public function run(): void
     {
-        $surveyQuestionCategory = QuestionCategory::where(['code' => 'SQ'])->value('id');
+        $survey = Survey::first();
+        $participantQuestionDimension = Dimension::where('code', 'IP')->value('id');
+        $physicalAggressionDimension = Dimension::where('code', 'AF')->value('id');
+        $verbalAggressionDimension = Dimension::where(['code' => 'AV'])->value('id');
+        $rageDimension = Dimension::where(['code' => 'IR'])->value('id');
+        $hostilityDimension = Dimension::where(['code' => 'HO'])->value('id');
 
-        Dimension::where('code', 'AF')->questions()->createMany([
+        $questions = [
             [
                 'number' => 1,
                 'title' => 'Algunas veces no controlo el impulso de golpear a otra persona.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $physicalAggressionDimension,
             ],
             [
                 'number' => 4,
                 'title' => 'Si me molestan mucho, le puedo pegar a otra persona.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $physicalAggressionDimension,
             ],
             [
                 'number' => 8,
                 'title' => 'Si alguien me pega, le respondo pegándole también.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $physicalAggressionDimension,
             ],
             [
                 'number' => 15,
                 'title' => 'Si tengo que recurrir a la violencia para proteger mis derechos, lo hago.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $physicalAggressionDimension,
             ],
             [
                 'number' => 19,
                 'title' => 'Hay personas que me causan tanta rabia, el punto de darnos golpes.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $physicalAggressionDimension,
             ],
             [
                 'number' => 22,
                 'title' => 'Le pego a otra persona cuando hay motivos.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $physicalAggressionDimension,
             ],
             [
                 'number' => 25,
                 'title' => 'He amenazado a gente que conozco.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $physicalAggressionDimension,
             ],
-        ]);
-
-        Dimension::where('code', 'AV')->questions()->createMany([
             [
                 'number' => 5,
                 'title' => 'Algunas veces no estoy de acuerdo con mis compañeros.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $verbalAggressionDimension,
             ],
             [
                 'number' => 9,
                 'title' => 'Cuando no estoy de acuerdo con mis amigos, alego abiertamente con ellos.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $verbalAggressionDimension,
             ],
             [
                 'number' => 12,
                 'title' => 'Cuando los demás no están de acuerdo conmigo, alego con ellos.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $verbalAggressionDimension,
             ],
             [
                 'number' => 16,
                 'title' => 'Mis amigos dicen que alego mucho.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $verbalAggressionDimension,
             ],
-        ]);
-
-        Dimension::where('code', 'IR')->questions()->createMany([
             [
                 'number' => 2,
                 'title' => 'Me enojo rápidamente pero se me pasa enseguida.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $rageDimension,
             ],
             [
                 'number' => 6,
                 'title' => 'Cuando las cosas no me salen bien, demuestro mi enojo.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $rageDimension,
             ],
             [
                 'number' => 10,
                 'title' => 'Algunas veces me siento tan enojado como si estuviera a punto de estallar.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $rageDimension,
             ],
             [
                 'number' => 13,
                 'title' => 'Me enojo con facilidad.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $rageDimension,
             ],
             [
                 'number' => 17,
                 'title' => 'Algunos de mis amigos dicen que soy una persona impulsiva.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $rageDimension,
             ],
             [
                 'number' => 20,
                 'title' => 'Algunas veces me enojo sin razón.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $rageDimension,
             ],
             [
                 'number' => 23,
                 'title' => 'Tengo dificultades para controlar mi genio.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $rageDimension,
             ],
-        ]);
-
-        Dimension::where('code', 'HO')->questions()->createMany([
             [
                 'number' => 3,
                 'title' => 'Me molesta la buena suerte que tienen otras personas.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $hostilityDimension,
             ],
             [
                 'number' => 7,
                 'title' => 'En ocasiones, siendo que la vida me ha tratado injustamente.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $hostilityDimension,
             ],
             [
                 'number' => 11,
                 'title' => 'Parece que siempre son otros los que tienen más suerte que yo.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $hostilityDimension,
             ],
             [
                 'number' => 14,
                 'title' => 'Me pregunto por qué algunas veces me siento tan enojado por algunas cosas.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $hostilityDimension,
             ],
             [
                 'number' => 18,
                 'title' => 'Sé que mis "amigos" hablan mal de mí a mis espaldas.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $hostilityDimension,
             ],
             [
                 'number' => 21,
                 'title' => 'Desconfío de desconocidos demasiado amigables.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $hostilityDimension,
             ],
             [
                 'number' => 24,
                 'title' => 'Algunas veces siento que las personas se están riendo de mí a mis espaldas.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $hostilityDimension,
             ],
             [
                 'number' => 26,
                 'title' => 'Cuando los demás se muestran especialmente amigables, me pregunto qué intenciones tendrán.',
-                'category_id' => $surveyQuestionCategory,
+                'dimension_id' => $hostilityDimension,
             ],
-        ]);
-
-        $participantQuestionCategory = QuestionCategory::where(['code' => 'PQ'])->value('id');
-
-
-        Question::createMany([
             [
                 'number' => 1,
                 'title' => 'Tipo de documento',
-                'category_id' => $participantQuestionCategory,
+                'dimension_id' => $participantQuestionDimension,
                 'type' => 'select',
                 'options' => DocumentTypes::array(),
             ],
             [
                 'number' => 2,
                 'title' => 'Número de documento',
-                'category_id' => $participantQuestionCategory,
+                'dimension_id' => $participantQuestionDimension,
                 'type' => 'integer',
                 'options' => [],
             ],
             [
                 'number' => 3,
                 'title' => 'Nombres',
-                'category_id' => $participantQuestionCategory,
+                'dimension_id' => $participantQuestionDimension,
                 'type' => 'text',
                 'options' => [],
             ],
             [
                 'number' => 4,
                 'title' => 'Apellidos',
-                'category_id' => $participantQuestionCategory,
+                'dimension_id' => $participantQuestionDimension,
                 'type' => 'text',
                 'options' => [],
             ],
             [
                 'number' => 5,
                 'title' => 'Institución',
-                'category_id' => $participantQuestionCategory,
+                'dimension_id' => $participantQuestionDimension,
                 'type' => 'text',
                 'options' => [],
             ]
-        ]);
+        ];
+
+        $attachQuestions = [];
+        foreach ($questions as $question) {
+            $questionModel = Question::create([
+                'title' => $question['title'],
+                'type' => $question['type'] ?? 'radio',
+                'dimension_id' => $question['dimension_id'],
+                'options' => $question['options'] ?? [1, 2, 3, 4, 5],
+            ]);
+
+            $attachQuestions[$questionModel->getKey()] = [
+                'number' => $question['number'],
+            ];
+        }
+
+        $survey->questions()->attach($attachQuestions);
     }
 }

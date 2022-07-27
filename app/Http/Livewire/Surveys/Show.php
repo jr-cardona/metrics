@@ -13,16 +13,22 @@ class Show extends Component
 
     public function render(): View
     {
+        $questions = $this->survey->questions()
+            ->with('dimension')
+            ->withPivot('number', 'is_active')
+            ->orderBy('number')
+            ->get();
+
         return view('livewire.surveys.show', [
-            'participantQuestions' => Question::query()->whereDoesntHave('dimension')->orderBy('number')->get(),
-            'surveyQuestions' => $this->survey->questions()->orderBy('number')->with('dimension:id,name')->get(),
+            'participantQuestions' => $questions->filter(fn (Question $question) => $question->dimension->code === 'IP'),
+            'surveyQuestions' => $questions->filter(fn (Question $question) => $question->dimension->code !== 'IP'),
         ]);
     }
 
     public function updateQuestionsOrder(array $list)
     {
         foreach ($list as $item) {
-            Question::find($item['value'])->update(['number' => $item['order']]);
+            $this->survey->questions()->updateExistingPivot($item['value'], ['number' => $item['order']]);
         }
     }
 }

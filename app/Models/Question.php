@@ -4,9 +4,7 @@ namespace App\Models;
 
 use App\Presenters\HasURLPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Question
@@ -66,16 +64,8 @@ class Question extends ModelBase
         return $this->belongsTo(Dimension::class);
     }
 
-    public function getLastNumber(): int
+    public function isSurveyDimension(): bool
     {
-        if (!empty($this->dimension_id)) {
-            return $this->dimension->survey->questions()
-                ->orderBy('number', 'desc')
-                ->value('number');
-        }
-
-        return Question::whereDoesntHave('dimension')
-            ->orderBy('number', 'desc')
-            ->value('number');
+        return $this->dimension?->code !== 'IP';
     }
 }

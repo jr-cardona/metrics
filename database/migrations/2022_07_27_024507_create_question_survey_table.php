@@ -13,6 +13,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('question_survey', function (Blueprint $table) {
+            $table->id();
             $table->unsignedSmallInteger('number');
             $table->boolean('is_active')->default(true);
             $table->foreignId('question_id')->nullable()->constrained()->nullOnDelete();

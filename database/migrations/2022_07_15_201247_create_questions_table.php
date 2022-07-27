@@ -16,7 +16,6 @@ return new class () extends Migration {
             $table->string('type', 50)->default('radio');
             $table->json('options')->nullable();
             $table->foreignId('dimension_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('question_category_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

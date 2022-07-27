@@ -55,7 +55,7 @@
                 <x-jet-input-error for="question.options" class="mt-2"></x-jet-input-error>
             </div>
         @endif
-        @if ($isSurveyQuestion)
+        @if ($this->question->isSurveyDimension())
             <div class="mt-4">
                 <x-jet-label for="question.dimension_id" value="{{ __('Dimension') }}"></x-jet-label>
                 <select
