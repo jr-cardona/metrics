@@ -5,6 +5,7 @@
             <x-slot name="title">
                 <div class="flex justify-between">
                     <h2 class="text-center text-2xl">{{ __('Participant questions') }}</h2>
+                    <x-search :search="'searchParticipantQuestion'"></x-search>
                     <button class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
                             wire:click="$emit('openQuestionModal', null, 'IP')"
                     >
@@ -82,6 +83,7 @@
             <x-slot name="title">
                 <div class="flex justify-between">
                     <h2 class="text-center text-2xl">{{ __('Survey questions') }}</h2>
+                    <x-search :search="'searchSurveyQuestion'"></x-search>
                     <button class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
                             wire:click="$emit('openQuestionModal')"
                     >
@@ -125,7 +127,7 @@
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">{{ $question->type }}</div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-600">{{ implode(', ', $question->options) }}</div>
                         </td>
                         <td class="px-6 py-4">

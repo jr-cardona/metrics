@@ -13,17 +13,27 @@ class Show extends Component
 
     public $listeners = ['questionUpdated' => 'render', 'deleted' => 'render'];
 
+    public ?string $searchParticipantQuestion = '';
+
+    public ?string $searchSurveyQuestion = '';
+
     public function render(): View
     {
-        $questions = $this->survey->questions()
-            ->with('dimension')
-            ->withPivot('number', 'is_active')
-            ->orderBy('number')
-            ->get();
-
         return view('livewire.surveys.show', [
-            'participantQuestions' => $questions->filter(fn (Question $question) => $question->dimension?->code === 'IP'),
-            'surveyQuestions' => $questions->filter(fn (Question $question) => $question->dimension?->code !== 'IP'),
+            'participantQuestions' =>
+                $this->survey->questions()
+                    ->withWhereHas('dimension', fn ($query) => $query->where('code', 'IP'))
+                    ->withPivot('number', 'is_active')
+                    ->orderBy('number')
+                    ->where('title', 'like', "%$this->searchParticipantQuestion%")
+                    ->get(),
+            'surveyQuestions' =>
+                $this->survey->questions()
+                    ->withWhereHas('dimension', fn ($query) => $query->where('code', '!=', 'IP'))
+                    ->withPivot('number', 'is_active')
+                    ->orderBy('number')
+                    ->where('title', 'like', "%$this->searchSurveyQuestion")
+                    ->get(),
         ]);
     }
 
