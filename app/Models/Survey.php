@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Presenters\HasURLPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
@@ -41,13 +42,8 @@ class Survey extends Model
         'is_active' => 'boolean',
     ];
 
-    public function dimensions(): HasMany
+    public function questions(): BelongsToMany
     {
-        return $this->hasMany(Dimension::class);
-    }
-
-    public function questions(): HasManyThrough
-    {
-        return $this->hasManyThrough(Question::class, Dimension::class);
+        return $this->belongsToMany(Question::class);
     }
 }

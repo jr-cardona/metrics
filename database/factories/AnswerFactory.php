@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Answer;
-use App\Models\Question;
+use App\Models\SurveyQuestion;
 
 class AnswerFactory extends Factory
 {
@@ -25,7 +25,7 @@ class AnswerFactory extends Factory
     {
         return [
             'value' => $this->faker->word,
-            'question_id' => Question::factory(),
+            'survey_question_id' => SurveyQuestion::factory(),
         ];
     }
 }

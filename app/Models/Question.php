@@ -47,8 +47,6 @@ class Question extends ModelBase
      */
     protected $casts = [
         'id' => 'integer',
-        'is_active' => 'boolean',
-        'number' => 'integer',
         'dimension_id' => 'integer',
         'options' => 'array',
     ];
@@ -61,11 +59,6 @@ class Question extends ModelBase
     protected $attributes = [
         'options' => '{}',
     ];
-
-    public function answers(): HasMany
-    {
-        return $this->hasMany(Answer::class);
-    }
 
     public function dimension(): BelongsTo
     {
