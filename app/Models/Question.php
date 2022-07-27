@@ -47,8 +47,9 @@ class Question extends ModelBase
      */
     protected $casts = [
         'id' => 'integer',
-        'dimension_id' => 'integer',
         'options' => 'array',
+        'dimension_id' => 'integer',
+        'category_id' => 'integer',
     ];
 
     /**

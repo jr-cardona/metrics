@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Dimension;
+use App\Models\QuestionCategory;
 
-class DimensionFactory extends Factory
+class QuestionCategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Dimension::class;
+    protected $model = QuestionCategory::class;
 
     /**
      * Define the model's default state.

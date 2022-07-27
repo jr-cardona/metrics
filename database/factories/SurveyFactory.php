@@ -24,8 +24,8 @@ class SurveyFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(4),
-            'is_active' => $this->faker->boolean(),
-            'description' => $this->faker->text(),
+            'is_active' => $this->faker->boolean,
+            'description' => $this->faker->text,
         ];
     }
 }
