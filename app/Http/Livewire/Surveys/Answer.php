@@ -15,7 +15,18 @@ class Answer extends Component
     {
         $this->survey->load('questions');
         return view('livewire.surveys.answer', [
-            'participantQuestions' => Question::whereDoesntHave('dimension')->orderBy('number')->get(),
+            'participantQuestions' =>
+                $this->survey->questions()
+                    ->withWhereHas('dimension', fn ($query) => $query->where('code', 'IP'))
+                    ->withPivot('number', 'is_active')
+                    ->orderBy('number')
+                    ->get(),
+            'surveyQuestions' =>
+                $this->survey->questions()
+                    ->withWhereHas('dimension', fn ($query) => $query->where('code', '!=', 'IP'))
+                    ->withPivot('number', 'is_active')
+                    ->orderBy('number')
+                    ->get(),
         ])
             ->layout('layouts.guest');
     }
