@@ -53,7 +53,7 @@
                             <livewire:questions.toggle
                                 :key="'toggle-'.$question->getKey()"
                                 :field="'is_active'"
-                                :model="$question"
+                                :question="$question->getKey()"
                                 :surveyId="$survey->getKey()"
                             ></livewire:questions.toggle>
                         </td>

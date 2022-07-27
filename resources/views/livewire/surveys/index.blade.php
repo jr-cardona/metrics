@@ -38,11 +38,11 @@
                     <div class="text-sm text-gray-600">{{ $survey->title }}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <livewire:components.toggle
+                    <livewire:surveys.toggle
                         :key="'toggle-'.$survey->getKey()"
                         :field="'is_active'"
-                        :model="$survey"
-                    ></livewire:components.toggle>
+                        :survey="$survey->getKey()"
+                    ></livewire:surveys.toggle>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-600">{{ $survey->created_at->diffForHumans() }}</div>

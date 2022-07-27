@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Livewire\Components;
+namespace App\Http\Livewire\Surveys;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Survey;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Toggle extends Component
 {
-    public Model $model;
+    public $survey;
 
     public string $field;
 
     public bool $isActive;
 
-    public function mount()
+    public function mount(Survey $survey)
     {
-        $this->isActive = (bool) $this->model->getAttribute($this->field);
+        $this->survey = $survey;
+        $this->isActive = (bool) $this->survey->getAttribute($this->field);
     }
 
     public function render(): View
@@ -26,6 +27,6 @@ class Toggle extends Component
 
     public function updatingIsActive(string $value)
     {
-        $this->model->setAttribute($this->field, (bool) $value)->save();
+        $this->survey->setAttribute($this->field, (bool) $value)->save();
     }
 }
