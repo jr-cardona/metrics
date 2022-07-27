@@ -2,17 +2,33 @@
 
 namespace App\Http\Livewire\Questions;
 
-class Toggle extends \App\Http\Livewire\Components\Toggle
+use App\Models\Question;
+use Illuminate\View\View;
+use Livewire\Component;
+
+class Toggle extends Component
 {
     public int $surveyId;
 
-    public function mount()
+    public $question;
+
+    public string $field;
+
+    public bool $isActive;
+
+    public function mount(Question $question)
     {
-        $this->isActive = $this->model->pivot->{$this->field};
+        $this->question = $question;
+        $this->isActive = $this->question->surveys()->whereKey($this->surveyId)->first()->pivot->{$this->field};
+    }
+
+    public function render(): View
+    {
+        return view('livewire.components.toggle');
     }
 
     public function updatingIsActive(string $value)
     {
-        $this->model->surveys()->updateExistingPivot($this->surveyId, [$this->field => (bool) $value]);
+        $this->question->surveys()->updateExistingPivot($this->surveyId, [$this->field => (bool) $value]);
     }
 }
