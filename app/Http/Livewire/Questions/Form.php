@@ -16,9 +16,9 @@ class Form extends \App\Http\Livewire\Components\Form
 
     public bool $showModalForm = false;
 
-    public Question $question;
+    public ?Question $question = null;
 
-    public int $surveyId;
+    public ?int $surveyId = null;
 
     public bool $isParticipantQuestion = false;
 
@@ -29,19 +29,24 @@ class Form extends \App\Http\Livewire\Components\Form
         $this->question = new Question();
     }
 
-    public function render(): View
+    public function render(): View|string
     {
-        return view('livewire.questions.form', [
-            'dimensions' => Dimension::where('code', '!=', 'IP')
-                ->pluck('name', 'id')
-                ->all(),
-            'types' => QuestionTypes::names(),
-        ]);
+        if (!is_null($this->question)) {
+            return view('livewire.questions.form', [
+                'dimensions' => Dimension::where('code', '!=', 'IP')
+                    ->pluck('name', 'id')
+                    ->all(),
+                'types' => QuestionTypes::names(),
+            ]);
+        }
+
+        return '';
     }
 
     public function openQuestionModal(?int $id = null, ?string $dimensionCode = null)
     {
         $this->resetValidation();
+        $this->resetExcept('surveyId');
 
         $this->question = ($id) ? Question::find($id) : new Question();
 
@@ -136,9 +141,7 @@ class Form extends \App\Http\Livewire\Components\Form
             'text' => __('Question') . ' ' . ($isNew ? __('created') : __('updated')),
         ]);
 
-        $this->question = new Question();
-
-        $this->options = [];
+        $this->resetExcept('surveyId');
 
         $this->emitTo(Show::getName(), 'questionUpdated');
 

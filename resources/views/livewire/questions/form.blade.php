@@ -51,7 +51,7 @@
                 </div>
                 @foreach($this->options as $index => $option)
                     <div class="flex items-center">
-                        <x-jet-label class="mr-2" for="options.{{$index}}">{{ $index }}.</x-jet-label>
+                        <x-jet-label class="mr-2" for="options.{{$index}}">{{ $index + 1 }}.</x-jet-label>
                         @if($option['is_saved'])
                             <span>{{ $option['value'] }}</span>
                             <button class="text-indigo-500 hover:text-indigo-900 px-3"
