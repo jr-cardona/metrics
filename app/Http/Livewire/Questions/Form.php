@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Questions;
 
 use App\Enums\QuestionTypes;
-use App\Http\Livewire\Surveys\Index;
+use App\Http\Livewire\Surveys\Show;
 use App\Http\Requests\QuestionSaveRequest;
 use App\Models\Dimension;
 use App\Models\Question;
@@ -46,6 +46,8 @@ class Form extends \App\Http\Livewire\Components\Form
         if ($dimensionCode) {
             $this->isParticipantQuestion = true;
             $this->question->dimension_id = Dimension::where('code', $dimensionCode)->value('id');
+        } else {
+            $this->isParticipantQuestion = false;
         }
 
         $this->showModalForm = true;
@@ -77,7 +79,7 @@ class Form extends \App\Http\Livewire\Components\Form
 
         $this->question = new Question();
 
-        $this->emitTo(Index::getName(), 'questionUpdated');
+        $this->emitTo(Show::getName(), 'questionUpdated');
 
         $this->showModalForm = false;
     }

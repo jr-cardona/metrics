@@ -14,6 +14,8 @@ class Delete extends Component
 
     public string $modelClass;
 
+    public string $parentComponent;
+
     public Model $model;
 
     public function openDeleteModal(int $id)
@@ -31,9 +33,13 @@ class Delete extends Component
     {
         $this->model->delete();
 
-        session()->flash('flash.bannerStyle', 'danger');
-        session()->flash('flash.banner', __('Record deleted.'));
+        $this->dispatchBrowserEvent('swal:modal', [
+            'type' => 'success',
+            'title' => 'Record deleted!',
+        ]);
 
-        $this->redirect(url()->previous());
+        $this->showDeleteModal = false;
+
+        $this->emitTo($this->parentComponent, 'deleted');
     }
 }

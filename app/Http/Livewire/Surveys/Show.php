@@ -11,6 +11,8 @@ class Show extends Component
 {
     public Survey $survey;
 
+    public $listeners = ['questionUpdated' => 'render', 'deleted' => 'render'];
+
     public function render(): View
     {
         $questions = $this->survey->questions()

@@ -43,7 +43,7 @@
                 </td>
             </tr>
         @endforeach
-        <livewire:components.delete :modelClass="\App\Models\Dimension::class"></livewire:components.delete>
+        <livewire:components.delete :parentComponent="App\Http\Livewire\Dimensions\Index::getName()" :modelClass="\App\Models\Dimension::class"></livewire:components.delete>
     </x-slot>
     <x-slot name="links">
         {{ $dimensions->links() }}
