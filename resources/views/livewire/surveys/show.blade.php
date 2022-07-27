@@ -49,11 +49,12 @@
                             <div class="text-sm text-gray-600">{{ implode(', ', $question->options) }}</div>
                         </td>
                         <td class="px-6 py-4">
-                            <livewire:components.toggle
-                                :key="$question->id"
+                            <livewire:questions.toggle
+                                :key="'toggle-'.$question->getKey()"
                                 :field="'is_active'"
                                 :model="$question"
-                            ></livewire:components.toggle>
+                                :survey_id="$survey->getKey()"
+                            ></livewire:questions.toggle>
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">
                             <button class="text-indigo-500 hover:text-indigo-900 px-3"
@@ -127,11 +128,12 @@
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <livewire:components.toggle
+                            <livewire:questions.toggle
                                 :key="'toggle-'.$question->getKey()"
                                 :field="'is_active'"
                                 :model="$question"
-                            ></livewire:components.toggle>
+                                :survey_id="$survey->getKey()"
+                            ></livewire:questions.toggle>
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">
                             <button class="text-indigo-500 hover:text-indigo-900 px-3"

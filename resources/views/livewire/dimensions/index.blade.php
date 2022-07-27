@@ -20,12 +20,6 @@
         </th>
         <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
             <x-sort-button :sortField="$sortField" :sortDesc="$sortDesc">
-                <x-slot name="field">survey_id</x-slot>
-                <x-slot name="fieldLabel">{{ __('Survey') }}</x-slot>
-            </x-sort-button>
-        </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-            <x-sort-button :sortField="$sortField" :sortDesc="$sortDesc">
                 <x-slot name="field">created_at</x-slot>
                 <x-slot name="fieldLabel">{{ __('Created At') }}</x-slot>
             </x-sort-button>
@@ -36,13 +30,6 @@
             <tr class="even:bg-gray-50">
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-600">{{ $dimension->name }}</div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-600">
-                        <a href="{{ $dimension->survey->url()->show() }}" class="text-indigo-500 hover:text-indigo-900">
-                            {{ $dimension->survey->title }}
-                        </a>
-                    </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-600">{{ $dimension->created_at->diffForHumans() }}</div>

@@ -13,8 +13,7 @@ class Index extends \App\Http\Livewire\Components\Index
         $viewModel = new DimensionIndexViewModel();
 
         $dimensions = Dimension::query()
-            ->select(['id', 'name', 'created_at', 'survey_id'])
-            ->with('survey:id,title')
+            ->select(['id', 'name', 'created_at'])
             ->where('name', 'like', "%$this->search%")
             ->orderBy($this->sortField, $this->sortDesc ? 'desc' : 'asc')
             ->paginate($this->paginate);

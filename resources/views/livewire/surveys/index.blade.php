@@ -18,7 +18,7 @@
                 <x-slot name="fieldLabel">{{ __('Title') }}</x-slot>
             </x-sort-button>
         </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+        <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
             <x-sort-button :sortField="$sortField" :sortDesc="$sortDesc">
                 <x-slot name="field">is_active</x-slot>
                 <x-slot name="fieldLabel">{{ __('Enabled') }}</x-slot>
@@ -38,7 +38,11 @@
                     <div class="text-sm text-gray-600">{{ $survey->title }}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-600">{{ $survey->is_active }}</div>
+                    <livewire:components.toggle
+                        :key="'toggle-'.$survey->getKey()"
+                        :field="'is_active'"
+                        :model="$survey"
+                    ></livewire:components.toggle>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-600">{{ $survey->created_at->diffForHumans() }}</div>

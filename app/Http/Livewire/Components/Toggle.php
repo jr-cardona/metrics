@@ -24,7 +24,7 @@ class Toggle extends Component
         return view('livewire.components.toggle');
     }
 
-    public function updating(string $field, string $value)
+    public function updatingIsActive(string $value)
     {
         $this->model->setAttribute($this->field, (bool) $value)->save();
     }
