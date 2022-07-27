@@ -22,6 +22,8 @@ class Form extends \App\Http\Livewire\Components\Form
 
     public bool $isParticipantQuestion = false;
 
+    public array $options = [];
+
     public function mount()
     {
         $this->question = new Question();
@@ -50,14 +52,71 @@ class Form extends \App\Http\Livewire\Components\Form
             $this->isParticipantQuestion = false;
         }
 
+        foreach ($this->question->options as $option) {
+            $this->options[] = [
+                'value' => $option,
+                'is_saved' => true,
+            ];
+        }
+
         $this->showModalForm = true;
+    }
+
+    public function addOption()
+    {
+        foreach ($this->options as $key => $option) {
+            if (!$option['is_saved']) {
+                $this->addError('options.' . $key, __('This line must been saved before creating a new one.'));
+                return;
+            }
+        }
+
+        $this->options[] = [
+            'value' => '',
+            'is_saved' => false,
+        ];
+    }
+
+    public function editOption(int $index)
+    {
+        $this->clearValidation();
+
+        foreach ($this->options as $key => $option) {
+            if (!$option['is_saved']) {
+                $this->addError('options.' . $key, __('This line must been saved before creating a new one.'));
+                return;
+            }
+        }
+
+        $this->options[$index]['is_saved'] = false;
+    }
+
+    public function saveOption(int $index)
+    {
+        if (empty($this->options[$index]['value'])) {
+            $this->addError('options.' . $index, __('This field is required.'));
+            return;
+        }
+
+        $this->options[$index]['is_saved'] = true;
+    }
+
+    public function removeOption(int $index)
+    {
+        unset($this->options[$index]);
     }
 
     public function save()
     {
-        $this->validate();
+        foreach ($this->options as $key => $option) {
+            if (!$option['is_saved']) {
+                $this->addError('options.' . $key, __('Please save all the options before save this question.'));
+                return;
+            }
+        }
 
         $isNew = !$this->question->exists;
+        $this->question->options = collect($this->options)->pluck('value')->all();
         $this->question->save();
 
         if ($isNew) {
@@ -78,6 +137,8 @@ class Form extends \App\Http\Livewire\Components\Form
         ]);
 
         $this->question = new Question();
+
+        $this->options = [];
 
         $this->emitTo(Show::getName(), 'questionUpdated');
 
