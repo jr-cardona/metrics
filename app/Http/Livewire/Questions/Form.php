@@ -98,6 +98,8 @@ class Form extends \App\Http\Livewire\Components\Form
 
     public function saveOption(int $index)
     {
+        $this->clearValidation();
+
         if (empty($this->options[$index]['value'])) {
             $this->addError('options.' . $index, __('This field is required.'));
             return;
@@ -120,8 +122,10 @@ class Form extends \App\Http\Livewire\Components\Form
             }
         }
 
-        $isNew = !$this->question->exists;
         $this->question->options = collect($this->options)->pluck('value')->all();
+
+        $this->validate();
+        $isNew = !$this->question->exists;
         $this->question->save();
 
         if ($isNew) {
