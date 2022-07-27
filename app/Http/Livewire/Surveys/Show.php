@@ -32,7 +32,7 @@ class Show extends Component
                     ->withWhereHas('dimension', fn ($query) => $query->where('code', '!=', 'IP'))
                     ->withPivot('number', 'is_active')
                     ->orderBy('number')
-                    ->where('title', 'like', "%$this->searchSurveyQuestion")
+                    ->where('title', 'like', "%$this->searchSurveyQuestion%")
                     ->get(),
         ]);
     }
