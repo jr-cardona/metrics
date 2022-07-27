@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Questions;
 
 class Toggle extends \App\Http\Livewire\Components\Toggle
 {
-    public int $survey_id;
+    public int $surveyId;
 
     public function mount()
     {
@@ -13,6 +13,6 @@ class Toggle extends \App\Http\Livewire\Components\Toggle
 
     public function updatingIsActive(string $value)
     {
-        $this->model->surveys()->updateExistingPivot($this->survey_id, [$this->field => (bool) $value]);
+        $this->model->surveys()->updateExistingPivot($this->surveyId, [$this->field => (bool) $value]);
     }
 }

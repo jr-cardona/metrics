@@ -8,6 +8,8 @@ use Illuminate\View\View;
 
 class Index extends \App\Http\Livewire\Components\Index
 {
+    public $listeners = ['questionUpdated' => 'render'];
+
     public function render(): View
     {
         $viewModel = new SurveyIndexViewModel();

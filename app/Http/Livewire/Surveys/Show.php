@@ -20,8 +20,8 @@ class Show extends Component
             ->get();
 
         return view('livewire.surveys.show', [
-            'participantQuestions' => $questions->filter(fn (Question $question) => $question->dimension->code === 'IP'),
-            'surveyQuestions' => $questions->filter(fn (Question $question) => $question->dimension->code !== 'IP'),
+            'participantQuestions' => $questions->filter(fn (Question $question) => $question->dimension?->code === 'IP'),
+            'surveyQuestions' => $questions->filter(fn (Question $question) => $question->dimension?->code !== 'IP'),
         ]);
     }
 

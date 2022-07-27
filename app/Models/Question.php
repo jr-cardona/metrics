@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Presenters\HasURLPresenter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -68,10 +69,5 @@ class Question extends ModelBase
     public function surveys(): BelongsToMany
     {
         return $this->belongsToMany(Survey::class)->withPivot('number', 'is_active');
-    }
-
-    public function isSurveyDimension(): bool
-    {
-        return $this->dimension?->code !== 'IP';
     }
 }
