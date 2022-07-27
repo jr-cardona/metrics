@@ -1,4 +1,4 @@
-<div class="w-full md:w-96 md:max-w-full mx-auto">
+<div class="w-full md:w-96 md:max-w-full mx-auto mt-20">
     <div class="p-6 border border-gray-300 sm:rounded-md">
         <form method="POST" action="https://herotofu.com/start">
             <label class="block mb-6">
@@ -93,7 +93,7 @@
                                 name="season"
                                 type="radio"
                                 class="
-                  text-indigo-600
+                  text-gray-600
                   border-gray-300
                   rounded-full
                   shadow-sm
@@ -114,7 +114,7 @@
                                 name="season"
                                 type="radio"
                                 class="
-                  text-indigo-600
+                  text-gray-600
                   border-gray-300
                   rounded-full
                   shadow-sm
@@ -136,7 +136,7 @@
                     class="
             h-10
             px-5
-            text-indigo-100
+            text-gray-100
             bg-indigo-700
             rounded-lg
             transition-colors

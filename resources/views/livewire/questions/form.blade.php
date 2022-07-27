@@ -40,7 +40,7 @@
             <div class="mt-4">
                 <div class="flex">
                     <x-jet-label value="{{ __('Options') }}"></x-jet-label>
-                    <button class="text-indigo-500 hover:text-red-900"
+                    <button class="text-gray-500 hover:text-red-900"
                             wire:click="addOption()"
                             title="{{ __('Create') }}"
                     >
@@ -54,7 +54,7 @@
                         <x-jet-label class="mr-2" for="options.{{$index}}">{{ $index + 1 }}.</x-jet-label>
                         @if($option['is_saved'])
                             <span>{{ $option['value'] }}</span>
-                            <button class="text-indigo-500 hover:text-indigo-900 px-3"
+                            <button class="text-gray-500 hover:text-gray-900 px-3"
                                     wire:click.prevent="editOption({{ $index }})"
                                     title="{{ __('Edit') }}"
                             >
@@ -77,7 +77,7 @@
                                 type="text"
                                 wire:model="options.{{$index}}.value"
                             ></x-jet-input>
-                            <button class="text-indigo-500 hover:text-indigo-900 px-2"
+                            <button class="text-gray-500 hover:text-gray-900 px-2"
                                     wire:click.prevent="saveOption({{ $index }})"
                                     title="{{ __('Save') }}"
                             >

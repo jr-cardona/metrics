@@ -6,7 +6,7 @@
                 <div class="flex justify-between">
                     <h2 class="text-center text-2xl">{{ __('Participant questions') }}</h2>
                     <x-search :search="'searchParticipantQuestion'"></x-search>
-                    <button class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
+                    <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
                             wire:click="$emit('openQuestionModal', null, 'IP')"
                     >
                         <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
@@ -59,7 +59,7 @@
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">
                             <div class="flex justify-end items-center">
-                                <button class="text-indigo-500 hover:text-indigo-900 px-3"
+                                <button class="text-gray-500 hover:text-gray-900 px-3"
                                         wire:click="$emit('openQuestionModal', {{ $question->getKey() }}, 'IP')"
                                 >
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +84,7 @@
                 <div class="flex justify-between">
                     <h2 class="text-center text-2xl">{{ __('Survey questions') }}</h2>
                     <x-search :search="'searchSurveyQuestion'"></x-search>
-                    <button class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
+                    <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
                             wire:click="$emit('openQuestionModal')"
                     >
                         <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
@@ -133,7 +133,7 @@
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">
                                 <a href="{{ $question->dimension?->url()->show() }}"
-                                   class="text-indigo-500 hover:text-indigo-900">
+                                   class="text-gray-500 hover:text-gray-900">
                                     {{ $question->dimension?->name }}
                                 </a>
                             </div>
@@ -148,7 +148,7 @@
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">
                             <div class="flex justify-end items-center">
-                                <button class="text-indigo-500 hover:text-indigo-900 px-3"
+                                <button class="text-gray-500 hover:text-gray-900 px-3"
                                         wire:click="$emit('openQuestionModal', {{ $question->getKey() }})"
                                 >
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

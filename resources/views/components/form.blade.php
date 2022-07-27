@@ -1,7 +1,7 @@
 <div class="py-2">
     <x-slot name="header">
         <div class="font-semibold text-xl text-gray-800 leading-tight">
-            <a class="text-indigo-400 hover:text-indigo-600" href="{{ $model->url()->index() }}">
+            <a class="text-gray-400 hover:text-gray-600" href="{{ $model->url()->index() }}">
                 {{ $title }}
             </a>
             @if($model->exists)
