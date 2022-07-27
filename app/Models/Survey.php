@@ -48,6 +48,6 @@ class Survey extends Model
 
     public function questions(): HasManyThrough
     {
-        return $this->hasManyThrough(Question::class, Dimension::class)->orderBy('number');
+        return $this->hasManyThrough(Question::class, Dimension::class);
     }
 }

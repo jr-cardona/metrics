@@ -14,7 +14,6 @@ return new class () extends Migration {
             $table->id();
             $table->unsignedSmallInteger('number');
             $table->string('title', 500);
-            $table->text('description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('type', 50)->default('radio');
             $table->json('options')->nullable();

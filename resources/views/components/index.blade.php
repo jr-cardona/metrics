@@ -14,14 +14,16 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tfoot class="bg-indigo-600 text-white">
-                            <tr>
-                                {{ $header }}
-                                <th scope="col" class="relative px-6 py-3">
-                                    <span class="sr-only">{{ __('Actions') }}</span>
-                                </th>
-                            </tr>
-                            </tfoot>
+                            @if ($footer ?? true)
+                                <tfoot class="bg-indigo-600 text-white">
+                                <tr>
+                                    {{ $header }}
+                                    <th scope="col" class="relative px-6 py-3">
+                                        <span class="sr-only">{{ __('Actions') }}</span>
+                                    </th>
+                                </tr>
+                                </tfoot>
+                            @endif
                             <tbody class="bg-white divide-y divide-gray-200" wire:sortable="updateQuestionsOrder">
                                 {{ $content }}
                             </tbody>

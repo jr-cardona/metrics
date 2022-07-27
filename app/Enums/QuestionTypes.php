@@ -16,4 +16,13 @@ enum QuestionTypes
     case radio;
     case phone;
     case email;
+
+    public static function withOptions(): array
+    {
+        return [
+            self::checkbox->name,
+            self::select->name,
+            self::radio->name,
+        ];
+    }
 }

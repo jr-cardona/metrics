@@ -42,12 +42,6 @@ Route::middleware([
     Route::get('/dimensions/{dimension}/show', App\Http\Livewire\Dimensions\Show::class)
         ->name('dimensions.show');
 
-    Route::get('questions', App\Http\Livewire\Questions\Index::class)
-        ->name('questions.index');
-    Route::get('/questions/create', App\Http\Livewire\Questions\Form::class)
-        ->name('questions.create');
-    Route::get('/questions/{question}/edit', App\Http\Livewire\Questions\Form::class)
-        ->name('questions.edit');
     Route::get('/questions/{question}/show', App\Http\Livewire\Questions\Show::class)
         ->name('questions.show');
 });

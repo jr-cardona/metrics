@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\QuestionTypes;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class QuestionSaveRequest extends FormRequest
 {
@@ -24,11 +26,10 @@ class QuestionSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'question.title' => ['required', 'string', 'max:500'],
-            'question.is_active' => ['required'],
-            'question.type' => ['required', 'in:text,textarea,checkbox,check,date,datetime,select,integer,radiobutton,phone,email,url'],
-            'question.number' => ['required', 'integer', 'gt:0'],
-            'question.dimension_id' => ['integer', 'exists:dimensions,id'],
+            'title' => ['required', 'string', 'max:500'],
+            'type' => ['required', Rule::in(QuestionTypes::names())],
+            'options' => ['nullable', 'array'],
+            'dimension_id' => ['nullable', 'integer', 'exists:dimensions,id'],
         ];
     }
 }

@@ -25,15 +25,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read int|null $answers_count
  * @property-read \App\Models\Dimension|null $dimension
  * @property-read int|null $options_count
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereDimensionId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property array|null $options
  */
@@ -60,15 +51,6 @@ class Question extends ModelBase
         'number' => 'integer',
         'dimension_id' => 'integer',
         'options' => 'array',
-    ];
-
-    /**
-     * The model's attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'options' => '{"1":1,"2":2,"3":3,"4":4,"5":5}',
     ];
 
     public function answers(): HasMany
