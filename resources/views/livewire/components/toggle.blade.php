@@ -4,15 +4,15 @@
         name="toggle" id="toggle" wire:model="isActive" type="checkbox"
     >
     <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+    <style>
+        .toggle-checkbox:checked {
+            @apply: right-0 border-green-400;
+            right: 0;
+            border-color: rgb(31 41 55 / var(--tw-bg-opacity));
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            @apply: bg-green-400;
+            background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+        }
+    </style>
 </div>
-<style>
-    .toggle-checkbox:checked {
-        @apply: right-0 border-green-400;
-        right: 0;
-        border-color: rgb(31 41 55 / var(--tw-bg-opacity));
-    }
-    .toggle-checkbox:checked + .toggle-label {
-        @apply: bg-green-400;
-        background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-    }
-</style>

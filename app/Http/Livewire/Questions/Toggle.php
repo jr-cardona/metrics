@@ -9,17 +9,11 @@ use Livewire\Component;
 
 class Toggle extends Component
 {
-    public $question;
+    public int $questionId;
 
     public string $field;
 
     public bool $isActive;
-
-    public function mount(Question $question)
-    {
-        $this->question = $question;
-        $this->isActive = (bool) $this->question->getAttribute($this->field);
-    }
 
     public function render(): View
     {
@@ -28,6 +22,6 @@ class Toggle extends Component
 
     public function updatingIsActive(string $value)
     {
-        $this->question->setAttribute($this->field, (bool) $value)->save();
+        Question::find($this->questionId)->setAttribute($this->field, (bool) $value)->save();
     }
 }

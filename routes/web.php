@@ -14,20 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/login');
-
-Route::get('language/{locale}', LocalizationController::class)->name('locale.update');
-
 Route::get('surveys/{survey}/answer', App\Http\Livewire\Answers\Form::class)
     ->name('answers.create');
 Route::get('answers/{participant}', App\Http\Livewire\Answers\Results::class)
     ->name('answers.results');
 
 Route::middleware([
+    'guest'
+])->group(function () {
+    Route::redirect('/', '/login');
+});
+
+Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    Route::get('language/{locale}', LocalizationController::class)->name('locale.update');
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::get('surveys', App\Http\Livewire\Surveys\Index::class)

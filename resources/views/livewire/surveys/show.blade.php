@@ -66,8 +66,9 @@
                                 <livewire:questions.toggle
                                     :key="'toggle-'.$question->getKey()"
                                     :field="'is_active'"
-                                    :question="$question->getKey()"
+                                    :questionId="$question->getKey()"
                                     :surveyId="$survey->getKey()"
+                                    :isActive="$question->is_active"
                                 ></livewire:questions.toggle>
                             @endempty
                         </td>
@@ -143,8 +144,9 @@
                             <livewire:questions.toggle
                                 :key="'toggle-'.$question->getKey()"
                                 :field="'is_active'"
-                                :question="$question->getKey()"
+                                :questionId="$question->getKey()"
                                 :surveyId="$survey->getKey()"
+                                :isActive="$question->is_active"
                             ></livewire:questions.toggle>
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">
