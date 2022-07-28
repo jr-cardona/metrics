@@ -1,161 +1,83 @@
-<div class="w-full md:w-96 md:max-w-full mx-auto mt-20">
-    <div class="p-6 border border-gray-300 sm:rounded-md">
-        <form method="POST" action="https://herotofu.com/start">
-            <label class="block mb-6">
-                <span class="text-gray-700">Your name</span>
-                <input
-                    name="name"
-                    type="text"
-                    class="
-            block
-            w-full
-            mt-1
-            border-gray-300
-            rounded-md
-            shadow-sm
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-          "
-                    placeholder="Joe Bloggs"
-                />
-            </label>
-            <label class="block mb-6">
-                <span class="text-gray-700">Email address</span>
-                <input
-                    name="email"
-                    type="email"
-                    class="
-            block
-            w-full
-            mt-1
-            border-gray-300
-            rounded-md
-            shadow-sm
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-          "
-                    placeholder="joe.bloggs@example.com"
-                />
-            </label>
-            <label class="block mb-6">
-                <span class="text-gray-700">When is your birthday?</span>
-                <input
-                    name="birthday"
-                    type="date"
-                    class="
-            block
-            w-full
-            mt-1
-            border-gray-300
-            rounded-md
-            shadow-sm
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-          "
-                />
-            </label>
-            <label class="block mb-6">
-        <span class="text-gray-700"
-        >What kind of present you expect this year?</span
-        >
-                <select
-                    name="present"
-                    class="
-            block
-            w-full
-            mt-1
-            border-gray-300
-            rounded-md
-            shadow-sm
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-          "
-                >
-                    <option>Chocolate cake</option>
-                    <option>Dancing cat</option>
-                    <option>Custom meme about me</option>
-                    <option>Zoom backgrounds for the rest of my life</option>
-                </select>
-            </label>
-            <div class="mb-6">
-                <div class="mt-2">
-                    <div>
-                        <label class="inline-flex items-center">
-                            <input
-                                name="season"
-                                type="radio"
-                                class="
-                  text-gray-600
-                  border-gray-300
-                  rounded-full
-                  shadow-sm
-                  focus:border-indigo-300
-                  focus:ring
-                  focus:ring-offset-0
-                  focus:ring-indigo-200
-                  focus:ring-opacity-50
-                "
-                                checked
-                            />
-                            <span class="ml-2">I like summer</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="inline-flex items-center">
-                            <input
-                                name="season"
-                                type="radio"
-                                class="
-                  text-gray-600
-                  border-gray-300
-                  rounded-full
-                  shadow-sm
-                  focus:border-indigo-300
-                  focus:ring
-                  focus:ring-offset-0
-                  focus:ring-indigo-200
-                  focus:ring-opacity-50
-                "
-                            />
-                            <span class="ml-2">I'm more into winter</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="mb-6">
-                <button
-                    type="submit"
-                    class="
-            h-10
-            px-5
-            text-gray-100
-            bg-indigo-700
-            rounded-lg
-            transition-colors
-            duration-150
-            focus:shadow-outline
-            hover:bg-indigo-800
-          "
-                >
-                    Send Answers
-                </button>
-            </div>
-            <div>
-                <div class="mt-2 text-gray-700 text-right text-xs">
-                    by
-                    <a href="https://herotofu.com" class="hover:underline" target="_blank"
-                    >HeroTofu</a
-                    >
-                </div>
-            </div>
-        </form>
+<div class="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="my-4">
+        <h2 class="text-2xl">{{ $this->survey->title }}</h2>
     </div>
+    <div class="my-4">
+        <h3>{{ $this->survey->description }}</h3>
+    </div>
+    <div class="flex items-center justify-center h-8 border-b sm:rounded-md bg-gray-800 text-white">
+        {{ __('Step') }} {{ $this->currentStep }} / {{ $this->totalSteps }}
+    </div>
+    <form method="POST" action="{{ route('answers.store', $this->survey) }}" class="p-6 border border-gray-300 sm:rounded-md">
+        @csrf
+        @if($this->currentStep === 1)
+            @foreach($participantQuestions as $index => $question)
+                <label class="block mb-6">
+                    <span class="text-gray-700">{{ $question['title'] }}</span>
+                    <x-dynamic-component :component="'inputs.'.$question['type']"
+                                         :index="$index"
+                                         :question="$question" />
+                </label>
+            @endforeach
+        @endif
+        @if($this->currentStep === 2)
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead>
+                <tr>
+                    <th scope="col" class="px-6 py-3"></th>
+                    <th scope="col" class="px-6 py-3"></th>
+                    @foreach(\App\Enums\QuestionTypes::radioOptions() as $option)
+                        <th scope="col" class="px-6 py-3">{{ $option }}</th>
+                    @endforeach
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                @foreach($surveyQuestions as $index => $question)
+                    <tr>
+                        <td class="py-6">{{ $question['pivot']['number'] }}.</td>
+                        <td>{{ $question['title'] }}</td>
+                        @foreach(\App\Enums\QuestionTypes::radioOptions() as $key => $option)
+                            <td class="text-center">
+                                <x-jet-input
+                                    name="{{ $question['pivot']['id'] }}"
+                                    value="{{ $key }}"
+                                    wire:model="surveyQuestions.{{$index}}.pivot.{{$question['pivot']['id']}}"
+                                    type="radio">
+                                </x-jet-input>
+                                <x-jet-input-error for="surveyQuestions.{{$index}}.pivot.{{$question['pivot']['id']}}"
+                                                   class="mt-2"
+                                ></x-jet-input-error>
+                            </td>
+                        @endforeach
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @endif
+        @if($this->currentStep === $this->totalSteps)
+            <div class="mb-2 mt-4 flex justify-between">
+                <x-jet-secondary-button wire:click.prevent="decreaseStep" class="h-10">
+                    {{ __('Previous') }}
+                </x-jet-secondary-button>
+                <x-jet-button type="submit" class="h-10">
+                    {{ __('Submit') }}
+                </x-jet-button>
+            </div>
+        @elseif($this->currentStep === 1)
+            <div class="mb-2 mt-4 flex justify-end">
+                <x-jet-secondary-button wire:click.prevent="increaseStep" class="h-10">
+                    {{ __('Next') }}
+                </x-jet-secondary-button>
+            </div>
+        @elseif($this->currentStep === 2)
+            <div class="mb-2 mt-6 flex justify-between">
+                <x-jet-secondary-button wire:click.prevent="decreaseStep" class="h-10">
+                    {{ __('Previous') }}
+                </x-jet-secondary-button>
+                <x-jet-secondary-button wire:click.prevent="increaseStep" class="h-10">
+                    {{ __('Next') }}
+                </x-jet-secondary-button>
+            </div>
+        @endif
+    </form>
 </div>

@@ -17,5 +17,13 @@
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+
+        @livewireScripts
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            window.addEventListener('swal:modal', event => {
+                Swal.fire(event.detail.title, event.detail.text, event.detail.type)
+            })
+        </script>
     </body>
 </html>

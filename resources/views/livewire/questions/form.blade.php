@@ -41,7 +41,7 @@
                 <div class="flex">
                     <x-jet-label value="{{ __('Options') }}"></x-jet-label>
                     <button class="text-gray-500 hover:text-red-900"
-                            wire:click="addOption()"
+                            wire:click="addOption"
                             title="{{ __('Create') }}"
                     >
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

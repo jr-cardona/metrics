@@ -141,7 +141,7 @@ class Form extends \App\Http\Livewire\Components\Form
 
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'success',
-            'title' => 'Success!',
+            'title' => __('Success') . '!',
             'text' => __('Question') . ' ' . ($isNew ? __('created') : __('updated')),
         ]);
 

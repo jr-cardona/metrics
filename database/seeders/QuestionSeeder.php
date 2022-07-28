@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\DocumentTypes;
+use App\Enums\QuestionTypes;
 use App\Models\Dimension;
 use App\Models\Question;
 use App\Models\Survey;
@@ -166,28 +167,28 @@ class QuestionSeeder extends Seeder
                 'number' => 2,
                 'title' => 'Número de documento',
                 'dimension_id' => $participantQuestionDimension,
-                'type' => 'integer',
+                'type' => QuestionTypes::number->name,
                 'options' => [],
             ],
             [
                 'number' => 3,
                 'title' => 'Nombres',
                 'dimension_id' => $participantQuestionDimension,
-                'type' => 'text',
+                'type' => QuestionTypes::text->name,
                 'options' => [],
             ],
             [
                 'number' => 4,
                 'title' => 'Apellidos',
                 'dimension_id' => $participantQuestionDimension,
-                'type' => 'text',
+                'type' => QuestionTypes::text->name,
                 'options' => [],
             ],
             [
                 'number' => 5,
                 'title' => 'Institución',
                 'dimension_id' => $participantQuestionDimension,
-                'type' => 'text',
+                'type' => QuestionTypes::text->name,
                 'options' => [],
             ]
         ];
@@ -198,7 +199,7 @@ class QuestionSeeder extends Seeder
                 'title' => $question['title'],
                 'type' => $question['type'] ?? 'radio',
                 'dimension_id' => $question['dimension_id'],
-                'options' => $question['options'] ?? [1, 2, 3, 4, 5],
+                'options' => $question['options'] ?? [],
             ]);
 
             $attachQuestions[$questionModel->getKey()] = [

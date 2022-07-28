@@ -6,7 +6,7 @@
                 <div class="flex justify-between">
                     <h2 class="text-center text-2xl">{{ __('Participant questions') }}</h2>
                     <x-search :search="'searchParticipantQuestion'"></x-search>
-                    <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
+                    <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
                             wire:click="$emit('openQuestionModal', null, 'IP')"
                     >
                         <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
@@ -26,6 +26,9 @@
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                     {{ __('Options') }}
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                    {{ __('Dimension') }}
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                     {{ __('Enabled') }}
@@ -48,6 +51,14 @@
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">{{ implode(', ', $question->options) }}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm text-gray-600">
+                                <a href="{{ $question->dimension?->url()->show() }}"
+                                   class="text-gray-500 hover:text-gray-900">
+                                    {{ $question->dimension?->name }}
+                                </a>
+                            </div>
                         </td>
                         <td class="px-6 py-4">
                             <livewire:questions.toggle
@@ -84,7 +95,7 @@
                 <div class="flex justify-between">
                     <h2 class="text-center text-2xl">{{ __('Survey questions') }}</h2>
                     <x-search :search="'searchSurveyQuestion'"></x-search>
-                    <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
+                    <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
                             wire:click="$emit('openQuestionModal')"
                     >
                         <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
@@ -128,7 +139,11 @@
                             <div class="text-sm text-gray-600">{{ $question->type }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-600">{{ implode(', ', $question->options) }}</div>
+                            <div class="text-sm text-gray-600">
+                                @if($question->type === \App\Enums\QuestionTypes::radio->name)
+                                    {{ implode(', ', array_keys(\App\Enums\QuestionTypes::radioOptions())) }}
+                                @endif
+                            </div>
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">
@@ -142,7 +157,7 @@
                             <livewire:questions.toggle
                                 :key="'toggle-'.$question->getKey()"
                                 :field="'is_active'"
-                                :model="$question"
+                                :question="$question->getKey()"
                                 :surveyId="$survey->getKey()"
                             ></livewire:questions.toggle>
                         </td>

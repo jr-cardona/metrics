@@ -8,11 +8,10 @@ enum QuestionTypes
 
     case text;
     case textarea;
-    case checkbox;
     case check;
     case date;
     case select;
-    case integer;
+    case number;
     case radio;
     case phone;
     case email;
@@ -20,9 +19,18 @@ enum QuestionTypes
     public static function withOptions(): array
     {
         return [
-            self::checkbox->name,
             self::select->name,
-            self::radio->name,
+        ];
+    }
+
+    public static function radioOptions(): array
+    {
+        return [
+            1 => 'Muy rara vez',
+            2 => 'Rara vez',
+            3 => 'Algunas veces',
+            4 => 'Frecuentemente',
+            5 => 'Muy frecuentemente',
         ];
     }
 }

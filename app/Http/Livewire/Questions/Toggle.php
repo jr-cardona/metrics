@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Questions;
 
 use App\Models\Question;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -19,7 +20,11 @@ class Toggle extends Component
     public function mount(Question $question)
     {
         $this->question = $question;
-        $this->isActive = $this->question->surveys()->whereKey($this->surveyId)->first()->pivot->{$this->field};
+        $this->isActive = DB::table('question_survey')
+            ->where('survey_id', $this->surveyId)
+            ->where('question_id', $question->getKey())
+            ->first()
+            ->{$this->field};
     }
 
     public function render(): View
