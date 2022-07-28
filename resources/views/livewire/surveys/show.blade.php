@@ -62,26 +62,31 @@
                             <div class="text-sm text-gray-600">{{ $question->options() }}</div>
                         </td>
                         <td class="px-6 py-4">
-                            <livewire:questions.toggle
-                                :key="'toggle-'.$question->getKey()"
-                                :field="'is_active'"
-                                :question="$question->getKey()"
-                                :surveyId="$survey->getKey()"
-                            ></livewire:questions.toggle>
+                            @empty($question->code)
+                                <livewire:questions.toggle
+                                    :key="'toggle-'.$question->getKey()"
+                                    :field="'is_active'"
+                                    :question="$question->getKey()"
+                                    :surveyId="$survey->getKey()"
+                                ></livewire:questions.toggle>
+                            @endempty
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">
+                            @empty($question->code)
                             <div class="flex justify-end items-center">
                                 <button class="text-gray-500 hover:text-gray-900 px-3"
                                         wire:click="$emit('openParticipantModal', {{ $question->getKey() }})"
                                 >
                                     <x-icons.edit></x-icons.edit>
                                 </button>
-                                <button class="text-red-500 hover:text-red-900"
-                                        wire:click="$emit('openDeleteModal', {{ $question->getKey() }})"
-                                >
-                                    <x-icons.delete></x-icons.delete>
-                                </button>
+
+                                    <button class="text-red-500 hover:text-red-900"
+                                            wire:click="$emit('openDeleteModal', {{ $question->getKey() }})"
+                                    >
+                                        <x-icons.delete></x-icons.delete>
+                                    </button>
                             </div>
+                            @endempty
                         </td>
                     </tr>
                 @endforeach

@@ -6,7 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
+ * App\Models\Question
+ *
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $title
+ * @property string|null $code
+ * @property int $number
+ * @property bool $is_active
+ * @property int|null $dimension_id
+ * @property int|null $survey_id
+ * @property string|null $type
+ * @property array|null $options
+ * @property string $category
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Dimension|null $dimension
+ * @property-read \App\Models\Survey|null $survey
+ * @method static \Database\Factories\QuestionFactory factory(...$parameters)
  */
 class Question extends ModelBase
 {

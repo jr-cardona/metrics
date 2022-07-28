@@ -8,15 +8,17 @@
     <div class="flex items-center justify-center h-8 border-b sm:rounded-md bg-gray-800 text-white">
         {{ __('Step') }} {{ $this->currentStep }} / {{ $this->totalSteps }}
     </div>
-    <form method="POST" action="{{ route('answers.store', $this->survey) }}" class="p-6 border border-gray-300 sm:rounded-md">
+    <div class="p-6 border border-gray-300 sm:rounded-md">
         @csrf
         @if($this->currentStep === 1)
-            @foreach($participantQuestions as $index => $question)
+            @foreach($participantQuestions as $id => $question)
                 <label class="block mb-6">
                     <span class="text-gray-700">{{ $question['title'] }}</span>
-                    <x-dynamic-component :component="'inputs.'.$question['type']"
-                                         :index="$index"
-                                         :question="$question" />
+                    <x-dynamic-component
+                        :component="'inputs.'.$question['type']"
+                        :id="$id"
+                        :question="$question"
+                    ></x-dynamic-component>
                 </label>
             @endforeach
         @endif
@@ -32,19 +34,19 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                @foreach($surveyQuestions as $index => $question)
+                @foreach($surveyQuestions as $id => $question)
                     <tr>
-                        <td class="py-6">{{ $question['pivot']['number'] }}.</td>
+                        <td class="py-6">{{ $question['number'] }}.</td>
                         <td>{{ $question['title'] }}</td>
                         @foreach(\App\Enums\QuestionTypes::radioOptions() as $key => $option)
                             <td class="text-center">
                                 <x-jet-input
-                                    name="{{ $question['pivot']['id'] }}"
+                                    name="{{ $id }}"
                                     value="{{ $key }}"
-                                    wire:model="surveyQuestions.{{$index}}.pivot.{{$question['pivot']['id']}}"
+                                    wire:model="surveyQuestions.{{ $id }}.value"
                                     type="radio">
                                 </x-jet-input>
-                                <x-jet-input-error for="surveyQuestions.{{$index}}.pivot.{{$question['pivot']['id']}}"
+                                <x-jet-input-error for="surveyQuestions.{{ $id }}.value"
                                                    class="mt-2"
                                 ></x-jet-input-error>
                             </td>
@@ -59,7 +61,7 @@
                 <x-jet-secondary-button wire:click.prevent="decreaseStep" class="h-10">
                     {{ __('Previous') }}
                 </x-jet-secondary-button>
-                <x-jet-button type="submit" class="h-10">
+                <x-jet-button wire:click.prevent="submit" class="h-10">
                     {{ __('Submit') }}
                 </x-jet-button>
             </div>
@@ -79,5 +81,5 @@
                 </x-jet-secondary-button>
             </div>
         @endif
-    </form>
+    </div>
 </div>

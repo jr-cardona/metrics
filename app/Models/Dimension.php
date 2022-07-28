@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $questions_count
  * @mixin \Eloquent
  * @property-read \App\Models\Survey|null $survey
+ * @method static \Database\Factories\DimensionFactory factory(...$parameters)
  */
 class Dimension extends Model
 {

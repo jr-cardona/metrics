@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Answers;
 
+use App\Enums\QuestionCategories;
+use App\Models\Question;
 use App\Models\Survey;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -22,21 +24,29 @@ class Form extends Component
     {
         $this->currentStep = 1;
 
-        $this->participantQuestions = $this->survey->questions()
-            ->whereHas('dimension', fn ($query) => $query->where('code', 'IP'))
-            ->withPivot('id', 'number')
+        $this->participantQuestions = Question::query()
             ->where('is_active', true)
+            ->where('category', QuestionCategories::participant->name)
             ->orderBy('number')
-            ->get(['type', 'title', 'number', 'options'])
-            ->toArray();
+            ->get(['id', 'type', 'title', 'number', 'options'])
+            ->mapWithKeys(fn (Question $question) => [$question->getKey() => [
+                'title' => $question->title,
+                'number' => $question->number,
+                'type' => $question->type,
+                'options' => $question->options,
+            ]])
+            ->all();
 
         $this->surveyQuestions = $this->survey->questions()
-            ->whereHas('dimension', fn ($query) => $query->where('code', '!=', 'IP'))
-            ->withPivot('id', 'number')
             ->where('is_active', true)
+            ->where('category', QuestionCategories::survey->name)
             ->orderBy('number')
-            ->get(['type', 'title', 'number', 'options'])
-            ->toArray();
+            ->get(['id', 'title', 'number'])
+            ->mapWithKeys(fn (Question $question) => [$question->getKey() => [
+                'title' => $question->title,
+                'number' => $question->number,
+            ]])
+            ->all();
     }
 
     public function render(): View
@@ -58,24 +68,34 @@ class Form extends Component
         $this->currentStep--;
     }
 
+    public function submit()
+    {
+        $this->resetErrorBag();
+        $this->validateData();
+
+        dd($this->participantQuestions);
+
+        $this->redirect(route('answers.results'));
+    }
+
     public function validateData()
     {
         if ($this->currentStep === 1) {
-            foreach ($this->participantQuestions as $index => $question) {
+            foreach ($this->participantQuestions as $id => $question) {
                 $this->validate([
-                    "participantQuestions.$index.pivot.{$question['pivot']['id']}" => 'required',
+                    "participantQuestions.$id.value" => 'required',
                 ], attributes: [
-                    "participantQuestions.$index.pivot.{$question['pivot']['id']}" => $question['title'],
+                    "participantQuestions.$id.value" => $question['title'],
                 ]);
             }
         }
 
         if ($this->currentStep === 2) {
-            foreach ($this->surveyQuestions as $index => $question) {
+            foreach ($this->surveyQuestions as $id => $question) {
                 $this->validate([
-                    "surveyQuestions.$index.pivot.{$question['pivot']['id']}" => 'required',
+                    "surveyQuestions.$id.value" => 'required',
                 ], attributes: [
-                    "surveyQuestions.$index.pivot.{$question['pivot']['id']}" => $question['title'],
+                    "surveyQuestions.$id.value" => $question['title'],
                 ]);
             }
         }

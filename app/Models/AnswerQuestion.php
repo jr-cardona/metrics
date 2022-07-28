@@ -6,6 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * App\Models\AnswerQuestion
+ *
+ * @property int $id
+ * @property string $value
+ * @property int $question_id
+ * @property int $participant_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Participant $participant
+ * @property-read \App\Models\Question $question
+ * @method static \Database\Factories\AnswerQuestionFactory factory(...$parameters)
+ * @mixin \Eloquent
+ */
 class AnswerQuestion extends Model
 {
     use HasFactory;

@@ -15,6 +15,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $description
  * @property-read \Illuminate\Database\Eloquent\Collection<Question> $questions
  * @mixin \Eloquent
+ * @property bool $is_active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read int|null $questions_count
+ * @method static \Database\Factories\SurveyFactory factory(...$parameters)
  */
 class Survey extends Model
 {
