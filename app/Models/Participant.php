@@ -38,7 +38,7 @@ class Participant extends Model
         'id' => 'integer',
     ];
 
-    public function answerQuestions(): HasMany
+    public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
     }
