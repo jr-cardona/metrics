@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Question
@@ -32,6 +33,7 @@ class Question extends ModelBase
 {
     use HasFactory;
     use HasURLPresenter;
+    use SoftDeletes;
 
     /**
      * The attributes that aren't mass assignable.

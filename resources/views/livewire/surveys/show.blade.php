@@ -1,6 +1,18 @@
 <x-show :model="$survey">
     <x-slot name="title">{{ __('Surveys') }}</x-slot>
     <x-slot name="fields">
+        <div class="text-center bg-gray-50 px-4 py-5 w-full">
+            <h2 class="text-2xl">
+                <a class="inline-flex justify-center items-center"
+                   href="{{ route('answers.create', $survey) }}"
+                   target="_blank"
+                >
+                    {{ __('Preview') }}
+                    <x-icons.external-link></x-icons.external-link>
+                </a>
+            </h2>
+
+        </div>
         <x-index :footer="false">
             <x-slot name="title">
                 <div class="flex justify-between">

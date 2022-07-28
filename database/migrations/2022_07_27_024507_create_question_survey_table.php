@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->id();
             $table->unsignedSmallInteger('number');
             $table->boolean('is_active')->default(true);
-            $table->foreignId('question_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('survey_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('question_id')->constrained();
+            $table->foreignId('survey_id')->constrained();
             $table->index(['question_id', 'survey_id']);
         });
     }
