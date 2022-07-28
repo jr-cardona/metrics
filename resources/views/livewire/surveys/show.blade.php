@@ -19,7 +19,7 @@
                     <h2 class="text-center text-2xl">{{ __('Participant questions') }}</h2>
                     <x-search :search="'searchParticipantQuestion'"></x-search>
                     <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
-                            wire:click="$emit('openQuestionModal', null, 'IP')"
+                            wire:click="$emit('openParticipantModal')"
                     >
                         <x-icons.create></x-icons.create>
                         {{ __('Create participant question') }}
@@ -40,9 +40,6 @@
                     {{ __('Options') }}
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                    {{ __('Dimension') }}
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                     {{ __('Enabled') }}
                 </th>
             </x-slot>
@@ -53,7 +50,7 @@
                         class="even:bg-gray-50"
                     >
                         <td class="px-6 py-4">
-                            <div class="text-sm text-gray-600">{{ $question->pivot->number }}</div>
+                            <div class="text-sm text-gray-600">{{ $question->number }}</div>
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">{{ $question->title }}</div>
@@ -62,15 +59,7 @@
                             <div class="text-sm text-gray-600">{{ __($question->type) }}</div>
                         </td>
                         <td class="px-6 py-4">
-                            <div class="text-sm text-gray-600">{{ implode(', ', $question->options) }}</div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="text-sm text-gray-600">
-                                <a href="{{ $question->dimension?->url()->show() }}"
-                                   class="text-gray-500 hover:text-gray-900">
-                                    {{ $question->dimension?->name }}
-                                </a>
-                            </div>
+                            <div class="text-sm text-gray-600">{{ $question->options() }}</div>
                         </td>
                         <td class="px-6 py-4">
                             <livewire:questions.toggle
@@ -83,7 +72,7 @@
                         <td class="px-6 py-4 text-right text-sm font-medium">
                             <div class="flex justify-end items-center">
                                 <button class="text-gray-500 hover:text-gray-900 px-3"
-                                        wire:click="$emit('openQuestionModal', {{ $question->getKey() }}, 'IP')"
+                                        wire:click="$emit('openParticipantModal', {{ $question->getKey() }})"
                                 >
                                     <x-icons.edit></x-icons.edit>
                                 </button>
@@ -104,7 +93,7 @@
                     <h2 class="text-center text-2xl">{{ __('Survey questions') }}</h2>
                     <x-search :search="'searchSurveyQuestion'"></x-search>
                     <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
-                            wire:click="$emit('openQuestionModal')"
+                            wire:click="$emit('openSurveyModal')"
                     >
                         <x-icons.create></x-icons.create>
                         {{ __('Create survey question') }}
@@ -117,12 +106,6 @@
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                     {{ __('Title') }}
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                    {{ __('Type') }}
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                    {{ __('Options') }}
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                     {{ __('Dimension') }}
@@ -138,20 +121,10 @@
                         class="even:bg-gray-50"
                     >
                         <td class="px-6 py-4">
-                            <div class="text-sm text-gray-600">{{ $question->pivot->number }}</div>
+                            <div class="text-sm text-gray-600">{{ $question->number }}</div>
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">{{ $question->title }}</div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="text-sm text-gray-600">{{ __($question->type) }}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-600">
-                                @if($question->type === \App\Enums\QuestionTypes::radio->name)
-                                    {{ implode(', ', array_keys(\App\Enums\QuestionTypes::radioOptions())) }}
-                                @endif
-                            </div>
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">
@@ -172,7 +145,7 @@
                         <td class="px-6 py-4 text-right text-sm font-medium">
                             <div class="flex justify-end items-center">
                                 <button class="text-gray-500 hover:text-gray-900 px-3"
-                                        wire:click="$emit('openQuestionModal', {{ $question->getKey() }})"
+                                        wire:click="$emit('openSurveyModal', {{ $question->getKey() }})"
                                 >
                                     <x-icons.edit></x-icons.edit>
                                 </button>
@@ -186,6 +159,7 @@
             </x-slot>
         </x-index>
         <livewire:components.delete :parentComponent="App\Http\Livewire\Surveys\Show::getName()" :modelClass="\App\Models\Question::class"></livewire:components.delete>
-        <livewire:questions.form :surveyId="$survey->getKey()"></livewire:questions.form>
+        <livewire:questions.participant-form :surveyId="$survey->getKey()"></livewire:questions.participant-form>
+        <livewire:questions.survey-form :surveyId="$survey->getKey()"></livewire:questions.survey-form>
     </x-slot>
 </x-show>

@@ -84,25 +84,6 @@
                 <x-jet-input-error for="question.options" class="mt-2"></x-jet-input-error>
             </div>
         @endif
-        @if(!$isParticipantQuestion)
-            <div class="mt-4">
-                <x-jet-label for="question.dimension_id" value="{{ __('Dimension') }}"></x-jet-label>
-                <select
-                    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                    id="question.dimension_id"
-                    name="question.dimension_id"
-                    wire:model="question.dimension_id"
-                >
-                    <option value="">--</option>
-                    @foreach($dimensions as $id => $name)
-                        <option value="{{ $id }}">
-                            {{ $name }}
-                        </option>
-                    @endforeach
-                </select>
-                <x-jet-input-error for="question.dimension_id" class="mt-2"></x-jet-input-error>
-            </div>
-        @endif
     </x-slot>
 
     <x-slot name="footer">

@@ -35,7 +35,7 @@ class Delete extends Component
 
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'success',
-            'title' => 'Record deleted!',
+            'title' => __('Record') . ' ' . __('deleted') . '!',
         ]);
 
         $this->showDeleteModal = false;

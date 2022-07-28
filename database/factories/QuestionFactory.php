@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\QuestionCategories;
 use App\Enums\QuestionTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -33,7 +34,7 @@ class QuestionFactory extends Factory
             'dimension_id' => Dimension::factory(),
             'survey_id' => Survey::factory(),
             'type' => $this->faker->randomElement(QuestionTypes::names()),
-            'category' => $this->faker->randomElement(['survey','participant']),
+            'category' => $this->faker->randomElement(QuestionCategories::names()),
         ];
     }
 }

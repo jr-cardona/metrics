@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Surveys;
 
+use App\Enums\QuestionCategories;
 use App\Models\Question;
 use App\Models\Survey;
 use Illuminate\View\View;
@@ -21,16 +22,15 @@ class Show extends Component
     {
         return view('livewire.surveys.show', [
             'participantQuestions' =>
-                $this->survey->questions()
-                    ->withWhereHas('dimension', fn ($query) => $query->where('code', 'IP'))
-                    ->withPivot('number', 'is_active')
+                Question::query()
                     ->orderBy('number')
+                    ->where('category', QuestionCategories::participant->name)
                     ->where('title', 'like', "%$this->searchParticipantQuestion%")
                     ->get(),
             'surveyQuestions' =>
                 $this->survey->questions()
-                    ->withWhereHas('dimension', fn ($query) => $query->where('code', '!=', 'IP'))
-                    ->withPivot('number', 'is_active')
+                    ->with('dimension')
+                    ->where('category', QuestionCategories::survey->name)
                     ->orderBy('number')
                     ->where('title', 'like', "%$this->searchSurveyQuestion%")
                     ->get(),
@@ -40,7 +40,7 @@ class Show extends Component
     public function updateQuestionsOrder(array $list)
     {
         foreach ($list as $item) {
-            $this->survey->questions()->updateExistingPivot($item['value'], ['number' => $item['order']]);
+            Question::find($item['value'])->update(['number' => $item['order']]);
         }
     }
 }

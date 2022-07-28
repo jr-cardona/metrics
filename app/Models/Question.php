@@ -42,4 +42,9 @@ class Question extends ModelBase
     {
         return $this->belongsTo(Survey::class);
     }
+
+    public function options(): string
+    {
+        return implode(',', $this->options ?? []);
+    }
 }

@@ -7,7 +7,7 @@ use App\Models\Question;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class QuestionSaveRequest extends FormRequest
+class ParticipantQuestionSaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,7 +34,6 @@ class QuestionSaveRequest extends FormRequest
                 Rule::requiredIf(in_array($question->type, QuestionTypes::withOptions())),
                 'array',
             ],
-            'question.dimension_id' => ['required', 'integer', 'exists:dimensions,id'],
         ];
     }
 }

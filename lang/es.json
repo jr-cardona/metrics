@@ -1,4 +1,7 @@
 {
+    "Success": "Exitoso",
+    "saved": "guardada",
+    "Preview": "Visualizar",
     "Previous": "Anterior",
     "Next": "Siguiente",
     "Submit": "Enviar",
@@ -7,6 +10,7 @@
     "Search": "Buscar",
     "Show": "Mostrar",
     "Edit": "Editar",
+    "deleted": "eliminado",
     "Details": "Detalles",
     "entries": "resultados",
     "survey": "encuesta",
@@ -17,6 +21,7 @@
     "Questions": "Preguntas",
     "Question": "Pregunta",
     "question": "pregunta",
+    "Record": "Registro",
     "record": "registro",
     "Title": "Título",
     "Type": "Tipo",

@@ -9,8 +9,6 @@ use Livewire\Component;
 
 class Toggle extends Component
 {
-    public int $surveyId;
-
     public $question;
 
     public string $field;
@@ -20,11 +18,7 @@ class Toggle extends Component
     public function mount(Question $question)
     {
         $this->question = $question;
-        $this->isActive = DB::table('question_survey')
-            ->where('survey_id', $this->surveyId)
-            ->where('question_id', $question->getKey())
-            ->first()
-            ->{$this->field};
+        $this->isActive = (bool) $this->question->getAttribute($this->field);
     }
 
     public function render(): View
@@ -34,6 +28,6 @@ class Toggle extends Component
 
     public function updatingIsActive(string $value)
     {
-        $this->question->surveys()->updateExistingPivot($this->surveyId, [$this->field => (bool) $value]);
+        $this->question->setAttribute($this->field, (bool) $value)->save();
     }
 }

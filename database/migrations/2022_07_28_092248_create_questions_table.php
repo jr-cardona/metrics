@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\QuestionCategories;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->foreignId('survey_id')->nullable()->constrained()->nullOnDelete();
             $table->string('type', 50)->nullable();
             $table->json('options')->nullable();
-            $table->enum('category', ['survey','participant']);
+            $table->enum('category', QuestionCategories::names());
             $table->timestamps();
         });
     }

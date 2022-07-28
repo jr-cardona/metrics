@@ -20,6 +20,7 @@ enum QuestionTypes
     {
         return [
             self::select->name,
+            self::radio->name,
         ];
     }
 
