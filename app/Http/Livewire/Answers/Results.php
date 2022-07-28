@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Answers;
 use App\Models\Participant;
 use Livewire\Component;
 
-class Store extends Component
+class Results extends Component
 {
     public Participant $participant;
 

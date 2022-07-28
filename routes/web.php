@@ -20,7 +20,7 @@ Route::get('language/{locale}', LocalizationController::class)->name('locale.upd
 
 Route::get('surveys/{survey}/answer', App\Http\Livewire\Answers\Form::class)
     ->name('answers.create');
-Route::get('answers/{participant}', App\Http\Livewire\Answers\Store::class)
+Route::get('answers/{participant}', App\Http\Livewire\Answers\Results::class)
     ->name('answers.results');
 
 Route::middleware([
