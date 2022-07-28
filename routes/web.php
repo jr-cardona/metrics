@@ -18,10 +18,10 @@ Route::redirect('/', '/login');
 
 Route::get('language/{locale}', LocalizationController::class)->name('locale.update');
 
-Route::get('/surveys/{survey}/answer', App\Http\Livewire\Answers\Form::class)
+Route::get('surveys/{survey}/answer', App\Http\Livewire\Answers\Form::class)
     ->name('answers.create');
-Route::post('/surveys/{survey}/answer', App\Http\Livewire\Answers\Store::class)
-    ->name('answers.store');
+Route::get('answers/{participant}', App\Http\Livewire\Answers\Store::class)
+    ->name('answers.results');
 
 Route::middleware([
     'auth:sanctum',
