@@ -23,7 +23,8 @@ class DimensionFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->name,
+            'code' => $this->faker->regexify('[A-Za-z0-9]{5}'),
         ];
     }
 }

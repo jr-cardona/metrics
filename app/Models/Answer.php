@@ -44,11 +44,11 @@ class Answer extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'question_id' => 'integer',
+        'survey_question_id' => 'integer',
     ];
 
-    public function question(): BelongsTo
+    public function surveyQuestion(): BelongsTo
     {
-        return $this->belongsTo(Question::class);
+        return $this->belongsTo(SurveyQuestion::class);
     }
 }

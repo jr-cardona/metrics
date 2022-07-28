@@ -2,22 +2,24 @@
 
 namespace App\Http\Livewire\Dimensions;
 
-use App\Http\Livewire\Components\IndexComponent;
 use App\Models\Dimension;
+use App\ViewModels\Dimensions\DimensionIndexViewModel;
 use Illuminate\View\View;
 
-class Index extends IndexComponent
+class Index extends \App\Http\Livewire\Components\Index
 {
+    public $listeners = ['deleted' => 'render'];
+
     public function render(): View
     {
-        return view('livewire.dimensions.index', [
-            'dimensions' => Dimension::query()
-                ->where('name', 'like', "%$this->search%")
-                ->orderBy($this->sortField, $this->sortDesc ? 'desc' : 'asc')
-                ->paginate($this->paginate, ['id', 'name', 'created_at']),
-            'paginationOptions' => range(start: 10, end: 100, step: 10),
-            'createRoute' => route('dimensions.create'),
-            'createLabel' => __('New dimension'),
-        ]);
+        $viewModel = new DimensionIndexViewModel();
+
+        $dimensions = Dimension::query()
+            ->select(['id', 'name', 'created_at'])
+            ->where('name', 'like', "%$this->search%")
+            ->orderBy($this->sortField, $this->sortDesc ? 'desc' : 'asc')
+            ->paginate($this->paginate);
+
+        return view('livewire.dimensions.index', $viewModel->collection(['dimensions' => $dimensions]));
     }
 }

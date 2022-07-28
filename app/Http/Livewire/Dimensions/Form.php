@@ -2,16 +2,18 @@
 
 namespace App\Http\Livewire\Dimensions;
 
+use App\Http\Requests\DimensionSaveRequest;
 use App\Models\Dimension;
 use Illuminate\View\View;
-use Livewire\Component;
-use Livewire\WithFileUploads;
 
-class Form extends Component
+class Form extends \App\Http\Livewire\Components\Form
 {
-    use WithFileUploads;
-
     public Dimension $dimension;
+
+    public function mount(Dimension $dimension)
+    {
+        $this->dimension = $dimension;
+    }
 
     public function render(): View
     {
@@ -20,20 +22,7 @@ class Form extends Component
 
     protected function rules(): array
     {
-        return [
-            'dimension.name' => ['required', 'string', 'max:255'],
-        ];
-    }
-
-    public function mount(Dimension $dimension)
-    {
-        $this->dimension = $dimension;
-    }
-
-
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
+        return (new DimensionSaveRequest())->rules();
     }
 
     public function save()

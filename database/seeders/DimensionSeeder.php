@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Dimension;
+use App\Models\Survey;
 use Illuminate\Database\Seeder;
 
 class DimensionSeeder extends Seeder
@@ -14,125 +15,10 @@ class DimensionSeeder extends Seeder
      */
     public function run(): void
     {
-        $physicalAggression = Dimension::create(['name' => 'Agresión física']);
-        $verbalAggression = Dimension::create(['name' => 'Agresión verbal']);
-        $rage = Dimension::create(['name' => 'Ira']);
-        $hostility = Dimension::create(['name' => 'Hostilidad']);
-
-        $physicalAggression->questions()->createMany([
-            [
-                'number' => 1,
-                'title' => 'Algunas veces no controlo el impulso de golpear a otra persona.',
-            ],
-            [
-                'number' => 4,
-                'title' => 'Si me molestan mucho, le puedo pegar a otra persona.',
-            ],
-            [
-                'number' => 8,
-                'title' => 'Si alguien me pega, le respondo pegándole también.',
-            ],
-            [
-                'number' => 15,
-                'title' => 'Si tengo que recurrir a la violencia para proteger mis derechos, lo hago.',
-            ],
-            [
-                'number' => 19,
-                'title' => 'Hay personas que me causan tanta rabia, el punto de darnos golpes.',
-            ],
-            [
-                'number' => 22,
-                'title' => 'Le pego a otra persona cuando hay motivos.',
-            ],
-            [
-                'number' => 25,
-                'title' => 'Cuando los demás se muestran especialmente amigables, me pregunto qué intenciones tendrán.',
-            ],
-        ]);
-
-        $verbalAggression->questions()->createMany([
-            [
-                'number' => 5,
-                'title' => 'Algunas veces no estoy de acuerdo con mis compañeros.',
-            ],
-            [
-                'number' => 9,
-                'title' => 'Cuando no estoy de acuerdo con mis amigos, alego abiertamente con ellos.',
-            ],
-            [
-                'number' => 12,
-                'title' => 'Cuando los demás no están de acuerdo conmigo, alego con ellos.',
-            ],
-            [
-                'number' => 16,
-                'title' => 'Mis amigos dicen que alego mucho.',
-            ],
-        ]);
-
-        $rage->questions()->createMany([
-            [
-                'number' => 2,
-                'title' => 'Me enojo rápidamente pero se me pasa enseguida.',
-            ],
-            [
-                'number' => 6,
-                'title' => 'Cuando las cosas no me salen bien, demuestro mi enojo.',
-            ],
-            [
-                'number' => 10,
-                'title' => 'Algunas veces me siento tan enojado como si estuviera a punto de estallar.',
-            ],
-            [
-                'number' => 13,
-                'title' => 'Me enojo con facilidad.',
-            ],
-            [
-                'number' => 17,
-                'title' => 'Algunos de mis amigos dicen que soy una persona impulsiva.',
-            ],
-            [
-                'number' => 20,
-                'title' => 'Algunas veces me enojo sin razón.',
-            ],
-            [
-                'number' => 23,
-                'title' => 'Tengo dificultades para controlar mi genio.',
-            ],
-        ]);
-
-        $hostility->questions()->createMany([
-            [
-                'number' => 3,
-                'title' => 'Me molesta la buena suerte que tienen otras personas.',
-            ],
-            [
-                'number' => 7,
-                'title' => 'En ocasiones, siendo que la vida me ha tratado injustamente.',
-            ],
-            [
-                'number' => 11,
-                'title' => 'Parece que siempre son otros los que tienen más suerte que yo.',
-            ],
-            [
-                'number' => 14,
-                'title' => 'Me pregunto por qué algunas veces me siento tan enojado por algunas cosas.',
-            ],
-            [
-                'number' => 18,
-                'title' => 'Sé que mis "amigos" hablan mal de mí a mis espaldas.',
-            ],
-            [
-                'number' => 21,
-                'title' => 'Desconfío de desconocidos demasiado amigables.',
-            ],
-            [
-                'number' => 24,
-                'title' => 'Algunas veces siento que las personas se están riendo de mí a mis espaldas.',
-            ],
-            [
-                'number' => 26,
-                'title' => 'Cuando los demás se muestran especialmente amigables, me pregunto qué intenciones tendrán.',
-            ],
-        ]);
+        Dimension::create(['name' => 'Información del participante', 'code' => 'IP']);
+        Dimension::create(['name' => 'Agresión física', 'code' => 'AF']);
+        Dimension::create(['name' => 'Agresión verbal', 'code' => 'AV']);
+        Dimension::create(['name' => 'Ira', 'code' => 'IR']);
+        Dimension::create(['name' => 'Hostilidad', 'code' => 'HO']);
     }
 }

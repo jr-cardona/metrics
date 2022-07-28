@@ -3,17 +3,17 @@
 namespace App\Models;
 
 use App\Presenters\HasURLPresenter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * App\Models\Question
  *
  * @property int $id
  * @property string $title
+ * @property string $description
  * @property bool $is_active
  * @property string $type
  * @property int $number
@@ -25,22 +25,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $answers_count
  * @property-read \App\Models\Dimension|null $dimension
  * @property-read int|null $options_count
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereDimensionId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Question whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property array|null $options
  */
-class Question extends Model
+class Question extends ModelBase
 {
     use HasFactory;
     use HasURLPresenter;
-    use SoftDeletes;
 
     /**
      * The attributes that aren't mass assignable.
@@ -56,10 +47,9 @@ class Question extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'is_active' => 'boolean',
-        'number' => 'integer',
-        'dimension_id' => 'integer',
         'options' => 'array',
+        'dimension_id' => 'integer',
+        'category_id' => 'integer',
     ];
 
     /**
@@ -68,16 +58,16 @@ class Question extends Model
      * @var array
      */
     protected $attributes = [
-        'options' => '{"1":1,"2":2,"3":3,"4":4,"5":5}',
+        'options' => '{}',
     ];
-
-    public function answers(): HasMany
-    {
-        return $this->hasMany(Answer::class);
-    }
 
     public function dimension(): BelongsTo
     {
         return $this->belongsTo(Dimension::class);
+    }
+
+    public function surveys(): BelongsToMany
+    {
+        return $this->belongsToMany(Survey::class)->withPivot('number', 'is_active');
     }
 }

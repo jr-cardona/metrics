@@ -13,17 +13,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $id
  * @property string $name
+ * @property string $code
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<Question> $questions
  * @property-read int|null $questions_count
- * @method static \Illuminate\Database\Eloquent\Builder|Dimension whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Dimension whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Dimension whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Dimension whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Dimension whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Survey|null $survey
  */
 class Dimension extends Model
 {
