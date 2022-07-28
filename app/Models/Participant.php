@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Participant
@@ -37,7 +38,7 @@ class Participant extends Model
         'id' => 'integer',
     ];
 
-    public function answerQuestions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function answerQuestions(): HasMany
     {
         return $this->hasMany(AnswerQuestion::class);
     }

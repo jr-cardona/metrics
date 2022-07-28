@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Answers;
 
 use App\Enums\QuestionCategories;
+use App\Models\AnswerQuestion;
+use App\Models\Participant;
 use App\Models\Question;
 use App\Models\Survey;
 use Illuminate\View\View;
@@ -16,37 +18,17 @@ class Form extends Component
 
     public int $totalSteps = 2;
 
-    public array $participantQuestions = [];
-
-    public array $surveyQuestions = [];
+    public array $questions = [];
 
     public function mount()
     {
         $this->currentStep = 1;
 
-        $this->participantQuestions = Question::query()
+        $this->questions = Question::query()
             ->where('is_active', true)
-            ->where('category', QuestionCategories::participant->name)
             ->orderBy('number')
-            ->get(['id', 'type', 'title', 'number', 'options'])
-            ->mapWithKeys(fn (Question $question) => [$question->getKey() => [
-                'title' => $question->title,
-                'number' => $question->number,
-                'type' => $question->type,
-                'options' => $question->options,
-            ]])
-            ->all();
-
-        $this->surveyQuestions = $this->survey->questions()
-            ->where('is_active', true)
-            ->where('category', QuestionCategories::survey->name)
-            ->orderBy('number')
-            ->get(['id', 'title', 'number'])
-            ->mapWithKeys(fn (Question $question) => [$question->getKey() => [
-                'title' => $question->title,
-                'number' => $question->number,
-            ]])
-            ->all();
+            ->get()
+            ->toArray();
     }
 
     public function render(): View
@@ -73,31 +55,39 @@ class Form extends Component
         $this->resetErrorBag();
         $this->validateData();
 
-        dd($this->participantQuestions);
+        $participant = Participant::create();
 
-        $this->redirect(route('answers.results'));
+        foreach ($this->questions as $question) {
+            if ($question['code'] === 'document') {
+                $participant->update(['document' => $question['value']]);
+            }
+
+            AnswerQuestion::create([
+                'participant_id' => $participant->getKey(),
+                'question_id' => $question['id'],
+                'value' => $question['value'],
+            ]);
+        }
+
+        $this->redirect(route('answers.results', $participant));
     }
 
     public function validateData()
     {
-        if ($this->currentStep === 1) {
-            foreach ($this->participantQuestions as $id => $question) {
-                $this->validate([
-                    "participantQuestions.$id.value" => 'required',
-                ], attributes: [
-                    "participantQuestions.$id.value" => $question['title'],
-                ]);
+        foreach ($this->questions as $id => $question) {
+            if ($this->currentStep === 1 && $question['category'] !== QuestionCategories::participant->name) {
+                continue;
             }
-        }
 
-        if ($this->currentStep === 2) {
-            foreach ($this->surveyQuestions as $id => $question) {
-                $this->validate([
-                    "surveyQuestions.$id.value" => 'required',
-                ], attributes: [
-                    "surveyQuestions.$id.value" => $question['title'],
-                ]);
+            if ($this->currentStep === 2 && $question['category'] !== QuestionCategories::survey->name) {
+                continue;
             }
+
+            $this->validate([
+                "questions.$id.value" => 'required',
+            ], attributes: [
+                "questions.$id.value" => $question['title'],
+            ]);
         }
     }
 }

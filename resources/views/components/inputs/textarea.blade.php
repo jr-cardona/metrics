@@ -1,8 +1,8 @@
-<x-jet-input
+<textarea
     id="{{ $id }}"
     name="{{ $id }}"
     wire:model="{{ $wire }}"
-    type="phone"
+    type="text"
     class="
     block
     w-full
@@ -15,7 +15,7 @@
     focus:ring-indigo-200
     focus:ring-opacity-50"
     required
-></x-jet-input>
+></textarea>
 <x-jet-input-error
     for="{{ $wire }}"
     class="mt-2"

@@ -1,7 +1,7 @@
 <select
-    id="{{ $question['pivot']['id'] }}"
-    name="{{ $question['pivot']['id'] }}"
-    wire:model="participantQuestions.{{$index}}.pivot.{{$question['pivot']['id']}}"
+    id="{{ $id }}"
+    name="{{ $id }}"
+    wire:model="{{ $wire }}"
     class="
     block
     w-full
@@ -20,6 +20,7 @@
         <option value="{{ $option }}">{{ $option }}</option>
     @endforeach
 </select>
-<x-jet-input-error for="participantQuestions.{{$index}}.pivot.{{$question['pivot']['id']}}"
-                   class="mt-2"
+<x-jet-input-error
+    for="{{ $wire }}"
+    class="mt-2"
 ></x-jet-input-error>

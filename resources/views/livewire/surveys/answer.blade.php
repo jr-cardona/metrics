@@ -11,13 +11,15 @@
     <div class="p-6 border border-gray-300 sm:rounded-md">
         @csrf
         @if($this->currentStep === 1)
-            @foreach($participantQuestions as $id => $question)
+            @foreach($this->questions as $id => $question)
+                @continue($question['category'] !== \App\Enums\QuestionCategories::participant->name)
                 <label class="block mb-6">
                     <span class="text-gray-700">{{ $question['title'] }}</span>
                     <x-dynamic-component
                         :component="'inputs.'.$question['type']"
                         :id="$id"
                         :question="$question"
+                        :wire="'questions.'.$id.'.value'"
                     ></x-dynamic-component>
                 </label>
             @endforeach
@@ -34,7 +36,8 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                @foreach($surveyQuestions as $id => $question)
+                @foreach($this->questions as $id => $question)
+                    @continue($question['category'] !== \App\Enums\QuestionCategories::survey->name)
                     <tr>
                         <td class="py-6">{{ $question['number'] }}.</td>
                         <td>{{ $question['title'] }}</td>
@@ -43,10 +46,10 @@
                                 <x-jet-input
                                     name="{{ $id }}"
                                     value="{{ $key }}"
-                                    wire:model="surveyQuestions.{{ $id }}.value"
+                                    wire:model="questions.{{ $id }}.value"
                                     type="radio">
                                 </x-jet-input>
-                                <x-jet-input-error for="surveyQuestions.{{ $id }}.value"
+                                <x-jet-input-error for="questions.{{ $id }}.value"
                                                    class="mt-2"
                                 ></x-jet-input-error>
                             </td>

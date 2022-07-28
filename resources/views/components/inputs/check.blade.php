@@ -2,10 +2,9 @@
     id="{{ $id }}"
     name="{{ $id }}"
     wire:model="{{ $wire }}"
-    type="phone"
+    type="checkbox"
     class="
     block
-    w-full
     mt-1
     border-gray-300
     rounded-md
