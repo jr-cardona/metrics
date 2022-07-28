@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/login');
+
+Route::get('language/{locale}', LocalizationController::class)->name('locale.update');
+
 Route::get('/surveys/{survey}/answer', App\Http\Livewire\Answers\Form::class)
     ->name('answers.create');
 Route::post('/surveys/{survey}/answer', App\Http\Livewire\Answers\Store::class)

@@ -13,6 +13,6 @@ class DimensionIndexViewModel extends IndexViewModel
 
     protected function createLabel(): string
     {
-        return __('New dimension');
+        return __('Create') . ' ' . __('dimension');
     }
 }

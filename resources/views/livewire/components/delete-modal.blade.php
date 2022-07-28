@@ -1,6 +1,6 @@
 <div>
     <x-jet-confirmation-modal wire:model="showDeleteModal">
-        <x-slot name="title"> {{ __('Delete Record') }}</x-slot>
+        <x-slot name="title"> {{ __('Delete') . ' ' . __('record') }}</x-slot>
         <x-slot name="content">{{ __('Are you sure you want to delete this record?') }}</x-slot>
         <x-slot name="footer">
             <x-jet-secondary-button wire:click.prevent="$set('showDeleteModal', false)" class="mr-auto">{{ __('Cancel') }}</x-jet-secondary-button>

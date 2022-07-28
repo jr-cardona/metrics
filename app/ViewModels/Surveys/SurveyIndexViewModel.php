@@ -13,6 +13,6 @@ class SurveyIndexViewModel extends IndexViewModel
 
     protected function createLabel(): string
     {
-        return __('New survey');
+        return __('Create') . ' ' . __('survey');
     }
 }
