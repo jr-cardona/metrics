@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Dimension;
 use App\Models\Question;
+use App\Models\Survey;
 
 class QuestionFactory extends Factory
 {
@@ -26,8 +27,13 @@ class QuestionFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(4),
-            'type' => $this->faker->randomElement(QuestionTypes::names()),
+            'code' => $this->faker->regexify('[A-Za-z0-9]{10}'),
+            'number' => $this->faker->randomNumber(3),
+            'is_active' => $this->faker->boolean,
             'dimension_id' => Dimension::factory(),
+            'survey_id' => Survey::factory(),
+            'type' => $this->faker->randomElement(QuestionTypes::names()),
+            'category' => $this->faker->randomElement(['survey','participant']),
         ];
     }
 }

@@ -3,12 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @mixin \Eloquent
- */
-class Question extends ModelBase
+class AnswerQuestion extends Model
 {
     use HasFactory;
 
@@ -26,20 +24,17 @@ class Question extends ModelBase
      */
     protected $casts = [
         'id' => 'integer',
-        'number' => 'integer',
-        'is_active' => 'boolean',
-        'dimension_id' => 'integer',
-        'survey_id' => 'integer',
-        'options' => 'array',
+        'question_id' => 'integer',
+        'participant_id' => 'integer',
     ];
 
-    public function dimension(): BelongsTo
+    public function question(): BelongsTo
     {
-        return $this->belongsTo(Dimension::class);
+        return $this->belongsTo(Question::class);
     }
 
-    public function survey(): BelongsTo
+    public function participant(): BelongsTo
     {
-        return $this->belongsTo(Survey::class);
+        return $this->belongsTo(Participant::class);
     }
 }

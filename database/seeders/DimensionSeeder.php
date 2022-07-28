@@ -15,7 +15,6 @@ class DimensionSeeder extends Seeder
      */
     public function run(): void
     {
-        Dimension::create(['name' => 'Información del participante', 'code' => 'IP']);
         Dimension::create(['name' => 'Agresión física', 'code' => 'AF']);
         Dimension::create(['name' => 'Agresión verbal', 'code' => 'AV']);
         Dimension::create(['name' => 'Ira', 'code' => 'IR']);

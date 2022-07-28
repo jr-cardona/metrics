@@ -5,9 +5,7 @@ namespace App\Models;
 use App\Presenters\HasURLPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * App\Models\Survey
@@ -15,9 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property int $id
  * @property string $title
  * @property string|null $description
- * @property-read \Illuminate\Database\Eloquent\Collection<Dimension> $dimensions
  * @property-read \Illuminate\Database\Eloquent\Collection<Question> $questions
- * @property-read int|null $dimensions_count
  * @mixin \Eloquent
  */
 class Survey extends Model
@@ -42,8 +38,8 @@ class Survey extends Model
         'is_active' => 'boolean',
     ];
 
-    public function questions(): BelongsToMany
+    public function questions(): HasMany
     {
-        return $this->belongsToMany(Question::class)->withPivot('number', 'is_active');
+        return $this->hasMany(Question::class);
     }
 }

@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,13 +13,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('question_survey', function (Blueprint $table) {
+        Schema::create('answer_questions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedSmallInteger('number');
-            $table->boolean('is_active')->default(true);
+            $table->string('value');
             $table->foreignId('question_id')->constrained();
-            $table->foreignId('survey_id')->constrained();
-            $table->index(['question_id', 'survey_id']);
+            $table->foreignId('participant_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('question_survey');
+        Schema::dropIfExists('answer_questions');
     }
 };
