@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Answers;
 
 use App\Enums\QuestionCategories;
-use App\Models\AnswerQuestion;
+use App\Models\Answer;
 use App\Models\Participant;
 use App\Models\Question;
 use App\Models\Survey;
@@ -62,7 +62,7 @@ class Form extends Component
                 $participant->update(['document' => $question['value']]);
             }
 
-            AnswerQuestion::create([
+            Answer::create([
                 'participant_id' => $participant->getKey(),
                 'question_id' => $question['id'],
                 'value' => $question['value'],

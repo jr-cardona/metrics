@@ -17,10 +17,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Participant $participant
  * @property-read \App\Models\Question $question
- * @method static \Database\Factories\AnswerQuestionFactory factory(...$parameters)
+ * @method static \Database\Factories\AnswerFactory factory(...$parameters)
  * @mixin \Eloquent
  */
-class AnswerQuestion extends Model
+class Answer extends Model
 {
     use HasFactory;
 

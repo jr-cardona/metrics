@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $document
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\AnswerQuestion[] $answerQuestions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Answer[] $answerQuestions
  * @property-read int|null $answer_questions_count
  * @method static \Database\Factories\ParticipantFactory factory(...$parameters)
  * @mixin \Eloquent
@@ -40,6 +40,6 @@ class Participant extends Model
 
     public function answerQuestions(): HasMany
     {
-        return $this->hasMany(AnswerQuestion::class);
+        return $this->hasMany(Answer::class);
     }
 }
