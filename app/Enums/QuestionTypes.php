@@ -12,7 +12,6 @@ enum QuestionTypes
     case date;
     case select;
     case number;
-    case radio;
     case phone;
     case email;
 
@@ -20,7 +19,6 @@ enum QuestionTypes
     {
         return [
             self::select->name,
-            self::radio->name,
         ];
     }
 
