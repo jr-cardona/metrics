@@ -17,8 +17,6 @@ class Results extends Component
 
     public function render()
     {
-        //$average = Dimension::query()->sum('');
-
         return view('livewire.answers.results', [
             'results' => DB::table('answers as a')
                 ->select('d.name as dimension')
