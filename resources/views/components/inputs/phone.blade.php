@@ -2,7 +2,7 @@
     id="{{ $id }}"
     name="{{ $id }}"
     wire:model="{{ $wire }}"
-    type="phone"
+    type="tel"
     class="
     block
     w-full
