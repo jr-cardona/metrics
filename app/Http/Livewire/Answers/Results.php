@@ -23,7 +23,7 @@ class Results extends Component
             'results' => DB::table('answers as a')
                 ->select('d.name as dimension')
                 ->selectRaw('count(q.id) as min')
-                ->selectRaw('sum(value) as your_score')
+                ->selectRaw('sum("value") as your_score')
                 ->join('questions as q', 'q.id', 'a.question_id')
                 ->join('dimensions as d', 'd.id', 'q.dimension_id')
                 ->where('a.participant_id', $this->participantId)
