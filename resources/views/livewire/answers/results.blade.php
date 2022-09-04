@@ -1,50 +1,51 @@
-<div>
-    <div class="row">
-       <div class="col-md-10 col-md-offset-1">
-           <div class="panel panel-default">
-               <div class="panel-body">
-                   <canvas id="canvas" height="280" width="600"></canvas>
-               </div>
-           </div>
-        </div>
-     </div>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/js/bootstrap-select.min.js" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
-    <script>
-    var url = "{{ url('answers/' . $this->participantId . '/results') }}";
-    var Dimensions = new Array();
-    var Prices = new Array();
-    $(document).ready(function(){
-        $.get(url, function(response){
-        console.log(response);
-        response.forEach(function(data){
-            Dimensions.push(data.dimension);
-            Prices.push(data.max);
-        });
-        var ctx = document.getElementById("canvas").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels:Dimensions,
-                    datasets: [{
-                        label: 'Resultado',
-                        data: Prices,
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
-                            }
-                        }]
-                    }
-                }
-            });
-        });
-    });
-    </script>
-</div>
+<canvas id="myChart" width="400" height="auto"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Agresion', 'Ira', 'Hostilidad'],
+        datasets: [{
+            label: 'Mínimo',
+            data: [7,4,7],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1
+        },
+        {
+            label: 'Máximo',
+            data: [35, 20, 35],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        },
+        {
+            label: 'Tu puntaje',
+            data: [19, 8, 18],
+            backgroundColor: [
+                'rgba(255, 206, 86, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 206, 86, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
