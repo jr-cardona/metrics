@@ -18,6 +18,7 @@ Route::get('surveys/{survey}/answer', App\Http\Livewire\Answers\Form::class)
     ->name('answers.create');
 Route::get('answers/{participant}', App\Http\Livewire\Answers\Results::class)
     ->name('answers.results');
+Route::get('answers/{participant}/results', App\Http\Controllers\ResultController::class);
 
 Route::middleware([
     'guest'
