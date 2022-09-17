@@ -3,26 +3,26 @@
 namespace App\Models;
 
 use App\Presenters\HasURLPresenter;
+use Database\Factories\DimensionFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Dimension
  *
  * @property int $id
  * @property string $name
- * @property string $code
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<Question> $questions
- * @property-read int|null $questions_count
- * @mixin \Eloquent
- * @property-read \App\Models\Survey|null $survey
- * @method static \Database\Factories\DimensionFactory factory(...$parameters)
+ * @property string|null $description
+ * @property Carbon|null $deleted_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static DimensionFactory factory(...$parameters)
+ * @mixin Eloquent
  */
 class Dimension extends Model
 {
@@ -36,15 +36,6 @@ class Dimension extends Model
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-    ];
 
     public function questions(): HasMany
     {

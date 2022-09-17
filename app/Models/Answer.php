@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use Database\Factories\AnswerFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\AnswerQuestion
@@ -13,12 +16,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $value
  * @property int $question_id
  * @property int $participant_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Participant $participant
- * @property-read \App\Models\Question $question
- * @method static \Database\Factories\AnswerFactory factory(...$parameters)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static AnswerFactory factory(...$parameters)
+ * @mixin Eloquent
  */
 class Answer extends Model
 {
@@ -30,17 +31,6 @@ class Answer extends Model
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'question_id' => 'integer',
-        'participant_id' => 'integer',
-    ];
 
     public function question(): BelongsTo
     {

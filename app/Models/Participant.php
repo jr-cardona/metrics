@@ -2,21 +2,22 @@
 
 namespace App\Models;
 
+use Database\Factories\ParticipantFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Participant
  *
  * @property int $id
  * @property string $document
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Answer[] $answerQuestions
- * @property-read int|null $answer_questions_count
- * @method static \Database\Factories\ParticipantFactory factory(...$parameters)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static ParticipantFactory factory(...$parameters)
+ * @mixin Eloquent
  */
 class Participant extends Model
 {
@@ -28,15 +29,6 @@ class Participant extends Model
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-    ];
 
     public function answers(): HasMany
     {

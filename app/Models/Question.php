@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
+use Database\Factories\QuestionFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Question
  *
- * @mixin \Eloquent
  * @property int $id
  * @property string $title
  * @property string|null $code
@@ -19,13 +25,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $type
  * @property array|null $options
  * @property string $category
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Dimension|null $dimension
- * @property-read \App\Models\Survey|null $survey
- * @method static \Database\Factories\QuestionFactory factory(...$parameters)
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static QuestionFactory factory(...$parameters)
+ * @mixin Eloquent
  */
-class Question extends ModelBase
+class Question extends Model
 {
     use HasFactory;
 

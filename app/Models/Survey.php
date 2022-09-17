@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use App\Presenters\HasURLPresenter;
+use Database\Factories\SurveyFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Survey
@@ -13,13 +18,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property string $title
  * @property string|null $description
- * @property-read \Illuminate\Database\Eloquent\Collection<Question> $questions
- * @mixin \Eloquent
  * @property bool $is_active
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read int|null $questions_count
- * @method static \Database\Factories\SurveyFactory factory(...$parameters)
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static SurveyFactory factory(...$parameters)
+ * @mixin Eloquent
  */
 class Survey extends Model
 {
@@ -32,16 +35,6 @@ class Survey extends Model
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'is_active' => 'boolean',
-    ];
 
     public function questions(): HasMany
     {
