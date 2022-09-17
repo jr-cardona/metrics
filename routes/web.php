@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('surveys/{survey}/answer', App\Http\Livewire\Answers\Form::class)
     ->name('answers.create');
-Route::get('answers/{participant}', App\Http\Livewire\Answers\Results::class)
+Route::get('surveys/{survey}/results', fn () => view('livewire.answers.results'))
     ->name('answers.results');
 Route::get('answers/{participant}/results', App\Http\Controllers\ResultController::class);
 
@@ -34,7 +34,7 @@ Route::middleware([
     Route::get('language/{locale}', LocalizationController::class)->name('locale.update');
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-    Route::get('surveys', App\Http\Livewire\Surveys\Index::class)
+    Route::get('/surveys', App\Http\Livewire\Surveys\Index::class)
         ->name('surveys.index');
     Route::get('/surveys/create', App\Http\Livewire\Surveys\Form::class)
         ->name('surveys.create');
@@ -42,6 +42,10 @@ Route::middleware([
         ->name('surveys.edit');
     Route::get('/surveys/{survey}/show', App\Http\Livewire\Surveys\Show::class)
         ->name('surveys.show');
+    Route::get('/surveys/{survey}/participants', App\Http\Livewire\Surveys\Participants::class)
+        ->name('surveys.participants');
+    Route::get('/surveys/{survey}/participants/{participant}', App\Http\Livewire\Surveys\Answers::class)
+        ->name('surveys.participants.show');
 
     Route::get('dimensions', App\Http\Livewire\Dimensions\Index::class)
         ->name('dimensions.index');

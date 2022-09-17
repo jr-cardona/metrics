@@ -24,7 +24,7 @@ class Form extends Component
     {
         $this->currentStep = 1;
 
-        $this->questions = Question::query()
+        $this->questions = $this->survey->questions()
             ->where('is_active', true)
             ->orderBy('number')
             ->get()
@@ -69,7 +69,7 @@ class Form extends Component
             ]);
         }
 
-        $this->redirect(route('answers.results', $participant));
+        $this->redirect(route('answers.results', $this->survey));
     }
 
     public function validateData()

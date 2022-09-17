@@ -25,6 +25,7 @@ class DimensionSaveRequest extends FormRequest
     {
         return [
             'dimension.name' => ['required', 'string', 'max:255'],
+            'dimension.description' => ['nullable', 'string'],
         ];
     }
 }

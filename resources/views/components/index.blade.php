@@ -1,6 +1,6 @@
 <div class="mt-5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{ $title }}
+        {{ $title ?? '' }}
         <div class="flex flex-col mt-5">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -28,11 +28,11 @@
                                 {{ $content }}
                             </tbody>
                         </table>
-                        @isset($links)
+                        @if(isset($links) && !empty($links->contents))
                             <div class="px-4 py-3 bg-gray-50 border-t">
                                 {{ $links }}
                             </div>
-                        @endisset
+                        @endif
                     </div>
                 </div>
             </div>

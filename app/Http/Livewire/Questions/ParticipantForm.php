@@ -100,6 +100,7 @@ class ParticipantForm extends Form
             $this->question->number = DB::table('questions')
                 ->where('category', QuestionCategories::participant->name)
                 ->max('number') + 1;
+            $this->question->survey_id = $this->surveyId;
             $this->question->category = QuestionCategories::participant->name;
         }
 

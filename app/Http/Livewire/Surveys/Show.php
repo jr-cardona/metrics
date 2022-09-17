@@ -22,17 +22,17 @@ class Show extends Component
     {
         return view('livewire.surveys.show', [
             'participantQuestions' =>
-                Question::query()
-                    ->orderBy('number')
+                $this->survey->questions()
                     ->where('category', QuestionCategories::participant->name)
                     ->where('title', 'like', "%$this->searchParticipantQuestion%")
+                    ->orderBy('number')
                     ->get(),
             'surveyQuestions' =>
                 $this->survey->questions()
                     ->with('dimension')
                     ->where('category', QuestionCategories::survey->name)
-                    ->orderBy('number')
                     ->where('title', 'like', "%$this->searchSurveyQuestion%")
+                    ->orderBy('number')
                     ->get(),
         ]);
     }

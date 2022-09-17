@@ -5,9 +5,11 @@
                 {{ $title }}
             </a>
             <span class="mx-5">></span>
-            {{ $model->name ?? $model->title }}
+            <a class="text-indigo-400 hover:text-indigo-600" href="{{ $model->url()->show() }}">
+                {{ $model->name ?? $model->title }}
+            </a>
             <span class="mx-5">></span>
-            <span>{{ __('Details') }}</span>
+            <span>{{ $label ?? __('Details') }}</span>
         </div>
     </x-slot>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
