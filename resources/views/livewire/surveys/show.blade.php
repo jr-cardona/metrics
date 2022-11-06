@@ -4,7 +4,7 @@
         <div class="text-center bg-gray-50 px-4 py-5 w-full">
             <h2 class="text-2xl">
                 <a class="inline-flex justify-center items-center"
-                   href="{{ route('answers.create', $survey) }}"
+                   href="{{ route('surveys.answer', $survey) }}"
                    target="_blank"
                 >
                     {{ __('Preview') }}
@@ -66,8 +66,7 @@
                                 <livewire:questions.toggle
                                     :key="'toggle-'.$question->getKey()"
                                     :field="'is_active'"
-                                    :questionId="$question->getKey()"
-                                    :surveyId="$survey->getKey()"
+                                    :modelId="$question->getKey()"
                                     :isActive="$question->is_active"
                                 ></livewire:questions.toggle>
                             @endempty
@@ -144,8 +143,7 @@
                             <livewire:questions.toggle
                                 :key="'toggle-'.$question->getKey()"
                                 :field="'is_active'"
-                                :questionId="$question->getKey()"
-                                :surveyId="$survey->getKey()"
+                                :modelId="$question->getKey()"
                                 :isActive="$question->is_active"
                             ></livewire:questions.toggle>
                         </td>

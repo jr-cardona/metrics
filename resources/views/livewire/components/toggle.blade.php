@@ -1,9 +1,9 @@
 <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
     <input
         class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-        name="toggle" id="{{ 'toggle-'.$questionId }}" wire:model="isActive" type="checkbox"
+        name="toggle" id="{{ 'toggle-'.$modelId }}" wire:model.debounce.1000ms="isActive" type="checkbox"
     >
-    <label for="{{ 'toggle-'.$questionId }}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+    <label for="{{ 'toggle-'.$modelId }}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
     <style>
         .toggle-checkbox:checked {
             @apply: right-0 border-green-400;

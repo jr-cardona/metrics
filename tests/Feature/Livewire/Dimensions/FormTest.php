@@ -45,7 +45,7 @@ class FormTest extends DBTestCase
     {
         Livewire::test(Form::getName())
             ->assertSeeHtml('wire:submit.prevent="save"')
-            ->assertSeeHtml('wire:model="dimension.name"');
+            ->assertSeeHtml('wire:model.debounce.1000ms="dimension.name"');
     }
 
     /** @test */

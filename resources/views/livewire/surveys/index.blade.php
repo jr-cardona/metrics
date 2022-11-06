@@ -41,7 +41,8 @@
                     <livewire:surveys.toggle
                         :key="'toggle-'.$survey->getKey()"
                         :field="'is_active'"
-                        :survey="$survey->getKey()"
+                        :modelId="$survey->getKey()"
+                        :isActive="$survey->is_active"
                     ></livewire:surveys.toggle>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">

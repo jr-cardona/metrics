@@ -1,7 +1,7 @@
 <select
     id="{{ $id }}"
     name="{{ $id }}"
-    wire:model="{{ $wire }}"
+    wire:model.debounce.1000ms="{{ $wire }}"
     class="
     block
     w-full

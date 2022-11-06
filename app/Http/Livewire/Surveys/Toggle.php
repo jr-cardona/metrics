@@ -8,17 +8,11 @@ use Livewire\Component;
 
 class Toggle extends Component
 {
-    public $survey;
+    public int $modelId;
 
     public string $field;
 
     public bool $isActive;
-
-    public function mount(Survey $survey)
-    {
-        $this->survey = $survey;
-        $this->isActive = (bool) $this->survey->getAttribute($this->field);
-    }
 
     public function render(): View
     {
@@ -27,6 +21,6 @@ class Toggle extends Component
 
     public function updatingIsActive(string $value)
     {
-        $this->survey->setAttribute($this->field, (bool) $value)->save();
+        Survey::find($this->modelId)->setAttribute($this->field, (bool) $value)->save();
     }
 }

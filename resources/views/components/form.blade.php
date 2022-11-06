@@ -19,7 +19,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form wire:submit.prevent="save">
                 <div class="px-4 py-5 bg-white sm:p-6 shadow {{ isset($actions) ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md' }}">
-                    <div class="grid grid-cols-6 gap-6">
+                    <div class="grid grid-cols-12 gap-6">
                         {{ $fields }}
                     </div>
                 </div>

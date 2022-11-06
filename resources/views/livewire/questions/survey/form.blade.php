@@ -1,4 +1,4 @@
-<x-jet-dialog-modal wire:model="showModalForm">
+<x-jet-dialog-modal wire:model.debounce.1000ms="showModalForm">
     <x-slot name="title">
         @if (isset($this->question) && $this->question->exists)
             {{ __('Edit') . ' ' . __('question') . ': ' }} {{ $this->question->title }}
@@ -15,7 +15,7 @@
                 id="question.title"
                 name="question.title"
                 type="text"
-                wire:model="question.title"
+                wire:model.debounce.1000ms="question.title"
             ></x-jet-input>
             <x-jet-input-error for="question.title" class="mt-2"></x-jet-input-error>
         </div>
@@ -25,7 +25,7 @@
                 class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                 id="question.dimension_id"
                 name="question.dimension_id"
-                wire:model="question.dimension_id"
+                wire:model.debounce.1000ms="question.dimension_id"
             >
                 <option value="">--</option>
                 @foreach($dimensions as $id => $name)

@@ -4,5 +4,5 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
     </label>
-    <x-jet-input id="search" wire:model="{{ $search ?? 'search' }}" type="search" placeholder="{{ __('Search') }}..."></x-jet-input>
+    <x-jet-input id="search" wire:model.debounce.1000ms="{{ $search ?? 'search' }}" type="search" placeholder="{{ __('Search') }}..."></x-jet-input>
 </div>

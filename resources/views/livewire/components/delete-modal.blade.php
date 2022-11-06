@@ -1,5 +1,5 @@
 <div>
-    <x-jet-confirmation-modal wire:model="showDeleteModal">
+    <x-jet-confirmation-modal wire:model.debounce.1000ms="showDeleteModal">
         <x-slot name="title"> {{ __('Delete') . ' ' . __('record') }}</x-slot>
         <x-slot name="content">{{ __('Are you sure you want to delete this record?') }}</x-slot>
         <x-slot name="footer">

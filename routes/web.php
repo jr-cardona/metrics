@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('surveys/{survey}/answer', App\Http\Livewire\Answers\Form::class)
-    ->name('answers.create');
+    ->name('surveys.answer');
 Route::get('surveys/{survey}/results', App\Http\Livewire\Answers\Results::class)
     ->name('surveys.results');
 Route::get('answers/{participant}/results', App\Http\Controllers\ResultController::class);

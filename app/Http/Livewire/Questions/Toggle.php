@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Toggle extends Component
 {
-    public int $questionId;
+    public int $modelId;
 
     public string $field;
 
@@ -21,6 +21,6 @@ class Toggle extends Component
 
     public function updatingIsActive(string $value)
     {
-        Question::find($this->questionId)->setAttribute($this->field, (bool) $value)->save();
+        Question::find($this->modelId)->setAttribute($this->field, (bool) $value)->save();
     }
 }

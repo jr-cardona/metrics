@@ -19,7 +19,7 @@
         </div>
 
         <!-- Delete User Confirmation Modal -->
-        <x-jet-dialog-modal wire:model="confirmingUserDeletion">
+        <x-jet-dialog-modal wire:model.debounce.1000ms="confirmingUserDeletion">
             <x-slot name="title">
                 {{ __('Delete Account') }}
             </x-slot>
@@ -31,7 +31,7 @@
                     <x-jet-input type="password" class="mt-1 block w-3/4"
                                 placeholder="{{ __('Password') }}"
                                 x-ref="password"
-                                wire:model.defer="password"
+                                wire:model.debounce.1000ms.defer="password"
                                 wire:keydown.enter="deleteUser" />
 
                     <x-jet-input-error for="password" class="mt-2" />
