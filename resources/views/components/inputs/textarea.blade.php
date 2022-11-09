@@ -1,7 +1,7 @@
 <textarea
     id="{{ $id }}"
     name="{{ $id }}"
-    wire:model.debounce.1000ms="{{ $wire }}"
+    wire:model="{{ $wire }}"
     type="text"
     class="
     block

@@ -1,7 +1,7 @@
 <x-jet-input
     id="{{ $id }}"
     name="{{ $id }}"
-    wire:model.debounce.1000ms="{{ $wire }}"
+    wire:model="{{ $wire }}"
     type="date"
     class="
     block
