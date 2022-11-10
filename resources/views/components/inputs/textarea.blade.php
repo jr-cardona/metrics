@@ -1,7 +1,7 @@
 <textarea
     id="{{ $id }}"
     name="{{ $id }}"
-    wire:model="{{ $wire }}"
+    wire:model.defer="{{ $wire }}"
     type="text"
     class="
     block

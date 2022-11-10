@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Answers;
 use App\Enums\QuestionCategories;
 use App\Models\Answer;
 use App\Models\Participant;
-use App\Models\Question;
 use App\Models\Survey;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -46,7 +45,6 @@ class Form extends Component
     public function decreaseStep()
     {
         $this->resetErrorBag();
-        $this->validateData();
         $this->currentStep--;
     }
 
@@ -69,7 +67,7 @@ class Form extends Component
             ]);
         }
 
-        $this->redirect(route('answers.results', $this->survey));
+        $this->redirect(route('surveys.results', $this->survey));
     }
 
     public function validateData()

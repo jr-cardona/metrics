@@ -46,7 +46,7 @@
                                 <x-jet-input
                                     name="{{ $id }}"
                                     value="{{ $key }}"
-                                    wire:model.debounce.1000ms="questions.{{ $id }}.value"
+                                    wire:model.defer="questions.{{ $id }}.value"
                                     type="radio">
                                 </x-jet-input>
                                 <x-jet-input-error for="questions.{{ $id }}.value"
