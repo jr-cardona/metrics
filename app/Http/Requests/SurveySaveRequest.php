@@ -16,6 +16,11 @@ class SurveySaveRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        $this->is_active = true;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,7 +30,6 @@ class SurveySaveRequest extends FormRequest
     {
         return [
             'survey.title' => ['string', 'max:255'],
-            'survey.is_active' => ['boolean'],
             'survey.description' => ['nullable'],
         ];
     }

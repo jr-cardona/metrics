@@ -19,9 +19,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form wire:submit.prevent="save">
                 <div class="px-4 py-5 bg-white sm:p-6 shadow {{ isset($actions) ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md' }}">
-                    <div class="grid grid-cols-12 gap-6">
-                        {{ $fields }}
-                    </div>
+                    {{ $fields }}
                 </div>
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
                     <a href="{{ $model->url()->index() }}" class="mr-auto">

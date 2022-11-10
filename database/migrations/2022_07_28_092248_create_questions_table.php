@@ -17,7 +17,7 @@ return new class extends Migration {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('title', 500);
-            $table->string('code', 10)->nullable();
+            $table->string('code', 50)->nullable();
             $table->unsignedSmallInteger('number');
             $table->boolean('is_active')->default(true);
             $table->foreignId('dimension_id')->nullable()->constrained()->nullOnDelete();

@@ -1,17 +1,24 @@
 <x-show :model="$survey">
     <x-slot name="title">{{ __('Surveys') }}</x-slot>
     <x-slot name="fields">
-        <div class="text-center bg-gray-50 px-4 py-5 w-full">
-            <h2 class="text-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex">
+            <div class="inline-flex items-center mx-4 px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition">
                 <a class="inline-flex justify-center items-center"
                    href="{{ route('surveys.answer', $survey) }}"
                    target="_blank"
                 >
-                    {{ __('Preview') }}
                     <x-icons.external-link></x-icons.external-link>
+                    {{ __('Preview') }}
                 </a>
-            </h2>
-
+            </div>
+            <div class="inline-flex items-center mx-4 px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition">
+                <a class="inline-flex justify-center items-center"
+                   href="{{ route('surveys.participants', $survey) }}"
+                >
+                    <x-icons.user></x-icons.user>
+                    {{ __('See') }} {{ __('Participants') }}
+                </a>
+            </div>
         </div>
         <x-index :footer="false">
             <x-slot name="title">
@@ -45,10 +52,7 @@
             </x-slot>
             <x-slot name="content">
                 @foreach($participantQuestions as $question)
-                    <tr wire:sortable.item="{{ $question->getKey() }}"
-                        wire:key="question-{{ $question->getKey() }}"
-                        class="even:bg-gray-50"
-                    >
+                    <tr class="even:bg-gray-50">
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-600">{{ $question->number }}</div>
                         </td>

@@ -188,6 +188,7 @@ class QuestionSeeder extends Seeder
             [
                 'number' => 1,
                 'title' => 'Tipo de documento',
+                'code' => 'document_type',
                 'type' => QuestionTypes::select->name,
                 'options' => DocumentTypes::array(),
                 'category' => QuestionCategories::participant->name,
@@ -202,18 +203,21 @@ class QuestionSeeder extends Seeder
             [
                 'number' => 3,
                 'title' => 'Nombres',
+                'code' => 'name',
                 'type' => QuestionTypes::text->name,
                 'category' => QuestionCategories::participant->name,
             ],
             [
                 'number' => 4,
                 'title' => 'Apellidos',
+                'code' => 'surname',
                 'type' => QuestionTypes::text->name,
                 'category' => QuestionCategories::participant->name,
             ],
             [
                 'number' => 5,
                 'title' => 'Institución',
+                'code' => 'institution',
                 'type' => QuestionTypes::text->name,
                 'category' => QuestionCategories::participant->name,
             ]

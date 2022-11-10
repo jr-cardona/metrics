@@ -13,13 +13,6 @@ class Participants extends \App\Http\Livewire\Components\Index
 
     public function render(): View
     {
-        $questions = $this->survey
-            ->questions()
-            ->where('category', QuestionCategories::participant->name)
-            ->has('answers')
-            ->pluck('title', 'id')
-            ->all();
-
         $participants = Participant::query()
             ->withWhereHas(
                 'answers',
@@ -32,6 +25,6 @@ class Participants extends \App\Http\Livewire\Components\Index
             )
             ->get();
 
-        return view('livewire.surveys.participants', compact('participants', 'questions'));
+        return view('livewire.surveys.participants')->with(['participants' => $participants]);
     }
 }
