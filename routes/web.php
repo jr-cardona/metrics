@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('surveys/{survey}/answer', App\Http\Livewire\Answers\Form::class)
+    ->name('surveys.answer');
+Route::get('surveys/{survey}/results', App\Http\Livewire\Answers\Results::class)
+    ->name('surveys.results');
+Route::get('answers/{participant}/results', App\Http\Controllers\ResultController::class);
+
+Route::middleware([
+    'guest'
+])->group(function () {
+    Route::redirect('/', '/login');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('language/{locale}', LocalizationController::class)->name('locale.update');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+    Route::get('/surveys', App\Http\Livewire\Surveys\Index::class)
+        ->name('surveys.index');
+    Route::get('/surveys/create', App\Http\Livewire\Surveys\Form::class)
+        ->name('surveys.create');
+    Route::get('/surveys/{survey}/edit', App\Http\Livewire\Surveys\Form::class)
+        ->name('surveys.edit');
+    Route::get('/surveys/{survey}/show', App\Http\Livewire\Surveys\Show::class)
+        ->name('surveys.show');
+    Route::get('/surveys/{survey}/participants', App\Http\Livewire\Surveys\Participants::class)
+        ->name('surveys.participants');
+    Route::get('/surveys/{survey}/participants/{participant}', App\Http\Livewire\Surveys\Answers::class)
+        ->name('surveys.participants.show');
+
+    Route::get('dimensions', App\Http\Livewire\Dimensions\Index::class)
+        ->name('dimensions.index');
+    Route::get('/dimensions/create', App\Http\Livewire\Dimensions\Form::class)
+        ->name('dimensions.create');
+    Route::get('/dimensions/{dimension}/edit', App\Http\Livewire\Dimensions\Form::class)
+        ->name('dimensions.edit');
+    Route::get('/dimensions/{dimension}/show', App\Http\Livewire\Dimensions\Show::class)
+        ->name('dimensions.show');
+
+    Route::get('/questions/{question}/show', App\Http\Livewire\Questions\Show::class)
+        ->name('questions.show');
 });
