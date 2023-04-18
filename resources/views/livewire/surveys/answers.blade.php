@@ -17,7 +17,7 @@
                     datasets: [
                         {
                             label: 'Puntaje mínimo',
-                            data: [7,4,7,7],
+                            data: [7, 4, 7, 8],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                             ],
@@ -28,7 +28,12 @@
                         },
                         {
                             label: 'Puntaje obtenido',
-                            data: [19, 8, 18, 16],
+                            data: [
+                                JSON.parse("{{ json_encode($physicalAggressionScore) }}"),
+                                JSON.parse("{{ json_encode($verbalAggressionScore) }}"),
+                                JSON.parse("{{ json_encode($rageScore) }}"),
+                                JSON.parse("{{ json_encode($hostilityScore) }}"),
+                            ],
                             backgroundColor: [
                                 'rgba(255, 206, 86, 0.2)',
                             ],
@@ -39,7 +44,7 @@
                         },
                         {
                             label: 'Puntaje máximo',
-                            data: [35, 20, 35, 35],
+                            data: [35, 20, 35, 40],
                             backgroundColor: [
                                 'rgba(54, 162, 235, 0.2)',
                             ],
