@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        resolve(\Illuminate\Routing\UrlGenerator::class)->forceScheme('https');
+        //resolve(\Illuminate\Routing\UrlGenerator::class)->forceScheme('https');
 
         view()->composer('components.language-switcher', function ($view) {
             $view->with('currentLocale', app()->getLocale());
