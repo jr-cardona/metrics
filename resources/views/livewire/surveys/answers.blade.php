@@ -1,9 +1,11 @@
 <x-show :model="$survey">
     <x-slot name="title">{{ __('Surveys') }}</x-slot>
     <x-slot name="label">
-        <span>{{ $participant->document }}</span>
+        <a class="text-indigo-400 hover:text-indigo-600" href="{{ $survey->url()->participants() }}">
+            {{ __('Participants') }}
+        </a>
         <span class="mx-5">></span>
-        <span>{{ __('Results') }}</span>
+        <span>{{ $participant->document }}</span>
     </x-slot>
     <x-slot name="fields">
         <canvas id="myChart" width="400" height="auto"></canvas>
