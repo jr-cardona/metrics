@@ -4,8 +4,8 @@
     <x-slot name="fields">
         <x-index :footer="false">
             <x-slot name="header">
-                @foreach($questions as $id => $title)
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                @foreach($questions as $title => $id)
+                    <th nowrap scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         {{ $title }}
                     </th>
                 @endforeach
@@ -13,9 +13,11 @@
             <x-slot name="content">
                 @foreach($participants as $participant)
                     <tr class="even:bg-gray-50">
-                        @foreach($participant->answers as $answer)
+                        @foreach($questions as $title => $id)
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-600">{{ $answer->value }}</div>
+                                <div class="text-sm text-gray-600 text-center">
+                                    {{ $participant->answers->firstWhere('question_id', $id)->value ?? 'N/A' }}
+                                </div>
                             </td>
                         @endforeach
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
